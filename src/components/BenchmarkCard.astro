@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  fynncloudValue: string;
+  fynncloudPercent: number;
+  nextcloudValue: string;
+  nextcloudLabel?: string;
+  comparisonPercent: string;
+  description: string;
+}
+const { title, fynncloudValue, fynncloudPercent, nextcloudValue, nextcloudLabel = "(PHP + Apache)", comparisonPercent, description } = Astro.props;
+---
+
+<div class="rounded-2xl bg-zinc-900/50 border border-white/5 p-6 shadow-xl flex flex-col justify-between gap-6">
+  <div class="space-y-4">
+    <h3 class="text-base font-bold text-white tracking-wide">{title}</h3>
+    
+    <div class="space-y-4">
+      <!-- FynnCloud bar -->
+      <div class="space-y-1">
+        <div class="flex justify-between text-xs">
+          <span class="text-zinc-300 font-semibold">FynnCloud <slot name="fynncloud-sub" /></span>
+          <span class="text-blue-400 font-bold">{fynncloudValue}</span>
+        </div>
+        <div class="w-full bg-zinc-950 rounded-full h-3 overflow-hidden p-0.5 border border-white/5">
+          <div class="bg-blue-500 h-full rounded-full shadow-sm" style={`width: ${fynncloudPercent}%`}></div>
+        </div>
+      </div>
+      <!-- Nextcloud bar -->
+      <div class="space-y-1">
+        <div class="flex justify-between text-xs">
+          <span class="text-neutral-300">Nextcloud <span class="text-zinc-600 font-normal">{nextcloudLabel}</span></span>
+          <span class="text-zinc-300">{nextcloudValue}</span>
+        </div>
+        <div class="w-full bg-zinc-950 rounded-full h-3 overflow-hidden p-0.5 border border-white/5">
+          <div class="bg-zinc-800 h-full rounded-full w-[100%]"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="flex justify-between items-center border-t border-white/5 pt-4 mt-2">
+    <span class="text-[10px] text-zinc-500 font-medium">{description}</span>
+    <span class="text-[10px] font-bold bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full border border-blue-500/20 shadow-sm">{comparisonPercent}</span>
+  </div>
+</div>

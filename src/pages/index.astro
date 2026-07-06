@@ -1,98 +1,455 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from "../layouts/Layout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import FastCard from "../components/FastCard.astro";
+import BenchmarkCard from "../components/BenchmarkCard.astro";
 ---
 
 <Layout>
-  <div class="max-w-3xl space-y-6">
-    <h1 class="text-3xl font-light text-primary-400 md:text-4xl">Cloud storage that doesn't feel like 2012.</h1>
-    <p class="text-base leading-relaxed text-zinc-300">
-      FynnCloud is a fast, self-hosted alternative to Nextcloud. Built on Swift and Vapor — not PHP — so it actually performs on modest hardware.
-    </p>
-
-    <!-- Why not Nextcloud -->
-    <div class="rounded-2xl bg-linear-to-b from-neutral-800/60 to-neutral-900/80 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-      <h2 class="text-sm font-medium text-zinc-200 mb-3">Why not Nextcloud?</h2>
-      <ul class="space-y-2 text-sm text-zinc-400">
-        <li class="flex items-start gap-2">
-          <svg class="size-4 mt-0.5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          <span><span class="text-zinc-200">Compiled & concurrent</span> — Swift's native binary with structured concurrency handles requests without PHP's per-request bootstrap cost.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="size-4 mt-0.5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          <span><span class="text-zinc-200">Clean architecture</span> — one statically-linked binary + PostgreSQL + Redis. No PHP-FPM pools, no opcache, no nginx rewrite rules.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="size-4 mt-0.5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          <span><span class="text-zinc-200">Real-time delta sync</span> — cursor-based sync API so desktop clients fetch only what changed, instead of polling the entire file tree.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="size-4 mt-0.5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          <span><span class="text-zinc-200">Modern frontend</span> — Nuxt 4 SPA with instant client-side navigation. No server-rendered PHP templates or full-page reloads.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <svg class="size-4 mt-0.5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          <span><span class="text-zinc-200">Faster uploads</span> — streaming body parsing writes chunks directly to storage without buffering the entire file in memory first.</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="grid gap-3 sm:grid-cols-2">
-      <div class="rounded-xl bg-linear-to-b from-neutral-800/80 to-neutral-900 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-        <div class="flex items-center gap-2 text-sm font-medium text-zinc-200">
-          <svg class="size-4 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
-          Chunked Uploads
-        </div>
-        <p class="mt-1.5 text-xs text-zinc-500">Resumable multipart uploads for large files with session tokens.</p>
+  <section
+    id="hero-section"
+    class="w-full bg-black text-white pt-12 pb-16 overflow-hidden relative flex flex-col items-center justify-center border-b border-white/5"
+    data-header-theme="dark"
+  >
+    <div class="w-full max-w-6xl px-6 flex flex-col items-center relative z-10">
+      <div class="w-full max-w-3xl flex flex-col items-start">
+        <h1
+          class="font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tight text-white max-w-3xl leading-tight"
+        >
+          Self-hosted cloud storage that doesn't feel like 2012.
+        </h1>
+        <p
+          class="mt-4 text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed"
+        >
+          A fast, compiled, and self-hosted alternative to Nextcloud. Built on
+          Swift and Vapor to perform effortlessly on modest hardware.
+        </p>
       </div>
-      <div class="rounded-xl bg-linear-to-b from-neutral-800/80 to-neutral-900 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-        <div class="flex items-center gap-2 text-sm font-medium text-zinc-200">
-          <svg class="size-4 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-          OAuth + LDAP
-        </div>
-        <p class="mt-1.5 text-xs text-zinc-500">Token rotation, refresh grants, and optional LDAP user sync.</p>
-      </div>
-      <div class="rounded-xl bg-linear-to-b from-neutral-800/80 to-neutral-900 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-        <div class="flex items-center gap-2 text-sm font-medium text-zinc-200">
-          <svg class="size-4 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"/></svg>
-          Native Desktop App
-        </div>
-        <p class="mt-1.5 text-xs text-zinc-500">macOS app with Finder integration via FileProvider.</p>
-      </div>
-      <div class="rounded-xl bg-linear-to-b from-neutral-800/80 to-neutral-900 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-        <div class="flex items-center gap-2 text-sm font-medium text-zinc-200">
-          <svg class="size-4 text-primary-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
-          S3 or Local Storage
-        </div>
-        <p class="mt-1.5 text-xs text-zinc-500">Swap between local disk and any S3-compatible backend via env vars.</p>
+      <div class="w-full max-w-5xl relative">
+        <img
+          src="/img/HeroMBPBlackWebsite.png"
+          alt="FynnCloud Finder Mockup"
+          class="w-full h-auto select-none pointer-events-none drop-shadow-[0_24px_50px_rgba(0,0,0,0.55)]"
+        />
       </div>
     </div>
+  </section>
 
-    <p class="text-xs text-zinc-600">Early alpha — in active development, not production-ready.</p>
-
-    <!-- 3D Button (FynnCloud style) -->
-    <div class="flex flex-wrap gap-3 pt-2">
-      <a href="https://github.com/FynnCloudProject" target="_blank" rel="noopener"
-        class="group relative inline-flex items-center justify-center rounded-xl px-5 py-2.5 transition-all duration-150 ease-out active:scale-[0.98]">
-        <div class="absolute inset-0 rounded-xl bg-linear-to-b from-primary-500 to-primary-700 shadow-[inset_0_2px_2px_rgba(255,255,255,0.3),0_4px_6px_rgba(0,0,0,0.1)] group-active:shadow-[inset_0_8px_16px_-2px_rgba(0,0,0,0.4)]"></div>
-        <span class="relative z-10 flex items-center gap-2 text-sm font-medium text-white drop-shadow-md">
-          <svg class="size-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          View on GitHub
-        </span>
-      </a>
+  <section
+    id="features"
+    class="w-full bg-white text-neutral-900 py-24 border-b border-neutral-200/50"
+    data-header-theme="light"
+  >
+    <div class="w-full max-w-5xl mx-auto px-6 flex flex-col mb-12">
+      <h2
+        class="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900"
+      >
+        Simply beautiful.
+      </h2>
+      <p class="mt-4 text-neutral-600 leading-relaxed max-w-2xl">
+        FynnCloud looks and feels like a natural part of your operating system.
+        Seamlessly access files in Finder, sync changes in real time, and share
+        folders instantly without web-bloat or slow loading screens.
+      </p>
     </div>
-  </div>
 
-  <section class="mt-14 max-w-3xl border-t border-white/5 pt-8">
-    <h2 class="text-sm font-medium uppercase tracking-wider text-zinc-500 mb-4">Stack</h2>
-    <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-zinc-400">
-      <p><span class="text-zinc-600">Backend:</span> Swift 6 · Vapor 4</p>
-      <p><span class="text-zinc-600">Frontend:</span> Nuxt 4 · TypeScript</p>
-      <p><span class="text-zinc-600">Database:</span> PostgreSQL</p>
-      <p><span class="text-zinc-600">Queue:</span> Redis</p>
-      <p><span class="text-zinc-600">Storage:</span> Local / S3-compatible</p>
-      <p><span class="text-zinc-600">Auth:</span> OAuth 2 · LDAP</p>
-      <p><span class="text-zinc-600">Desktop:</span> Flutter · FileProvider</p>
-      <p><span class="text-zinc-600">Deploy:</span> Docker</p>
+    <div
+      id="carousel-1"
+      class="carousel-scroller w-full overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none pb-4"
+    >
+      <div
+        class="carousel-track flex gap-6 justify-start min-[1440px]:justify-center"
+      >
+        <FeatureCard
+          title="Native macOS Desktop."
+          description="Integrated right into Finder. Access all your files natively on your Mac without taking up local storage space."
+          paddingClass="p-0"
+        >
+          <img
+            src="/img/NativeMacMockup.png"
+            alt="FynnCloud Finder Mockup"
+            class="w-full h-full object-contain select-none"
+          />
+        </FeatureCard>
+
+        <FeatureCard
+          title="Native Share Integration."
+          description="Share files and folders directly from Finder. Create links, enforce password protection, and set expiration dates natively."
+          paddingClass="p-0"
+        >
+          <img
+            src="/img/NativeShareMockup.png"
+            alt="FynnCloud Finder Native Share Popover"
+            class="w-full h-full object-contain select-none"
+          />
+        </FeatureCard>
+
+        <FeatureCard
+          title="Modern Web Interface."
+          description="A responsive, modern web dashboard. Navigate instantly, preview your documents, and manage your drive without slow page reloads."
+          paddingClass="p-0"
+        >
+          <img
+            src="/img/ModernWebInterfaceMockup.png"
+            alt="FynnCloud Web Interface Mockup"
+            class="w-full h-full object-contain select-none"
+          />
+        </FeatureCard>
+
+        <FeatureCard
+          title="Real-time Delta Sync."
+          description="Smart syncing. Only transfers files that have actually changed, saving you time and internet bandwidth instead of re-downloading entire folders."
+          paddingClass="p-0"
+        >
+          <img
+            src="/img/DeltaSyncStatus.png"
+            alt="FynnCloud Delta Sync Status"
+            class="w-full h-full object-contain select-none"
+          />
+        </FeatureCard>
+      </div>
+    </div>
+
+    <div
+      class="w-full max-w-5xl mx-auto px-6 flex justify-end gap-2 mt-12 select-none"
+    >
+      <button
+        type="button"
+        onclick="document.getElementById('carousel-1').scrollBy({left: -320, behavior: 'smooth'})"
+        class="p-2 rounded-full border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-300 hover:text-neutral-600 transition duration-150 focus:outline-none"
+        aria-label="Previous Feature"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"></path></svg
+        >
+      </button>
+      <button
+        type="button"
+        onclick="document.getElementById('carousel-1').scrollBy({left: 320, behavior: 'smooth'})"
+        class="p-2 rounded-full border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-300 hover:text-neutral-600 transition duration-150 focus:outline-none"
+        aria-label="Next Feature"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          ><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </section>
+
+  <section class="w-full bg-black text-white py-24" data-header-theme="dark">
+    <div class="w-full max-w-5xl mx-auto px-6 flex flex-col mb-12">
+      <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white">
+        Blazingly fast.
+      </h2>
+      <p class="mt-4 text-neutral-300 leading-relaxed max-w-2xl">
+        FynnCloud launches in an instant, processes file synchronizations
+        effortlessly, and stays remarkably light on system resources. Speed is
+        built directly into the core architecture.
+      </p>
+    </div>
+
+    <div
+      id="carousel-2"
+      class="carousel-scroller w-full overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none pb-4"
+    >
+      <div
+        class="carousel-track flex gap-6 justify-start min-[1600px]:justify-center"
+      >
+        <FastCard
+          title="Built for speed."
+          description="Powered by Swift — the same language behind Apple's own apps. FynnCloud handles thousands of requests instantly without complex overhead."
+        >
+          <svg
+            class="w-8 h-8 text-blue-500 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+            ></path></svg
+          >
+        </FastCard>
+        <FastCard
+          title="Simple and lightweight."
+          description="Runs as a single, lightweight server application. No complex web servers or background server processes to configure and maintain."
+        >
+          <svg
+            class="w-8 h-8 text-blue-500 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+            ></path></svg
+          >
+        </FastCard>
+        <FastCard
+          title="Direct uploads."
+          description="Upload large files directly to storage without overloading your server's memory, ensuring a smooth experience."
+        >
+          <svg
+            class="w-8 h-8 text-blue-500 shrink-0"
+            fill="none"
+            viewBox="0 0 20 20"
+            stroke="currentColor"
+            stroke-width="1.5"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+            ></path></svg
+          >
+        </FastCard>
+        <FastCard
+          title="Secure access."
+          description="Modern user authentication and directory sync to keep your files secure and integrate easily with existing accounts."
+        >
+          <svg
+            class="w-8 h-8 text-blue-500 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"
+            ></path></svg
+          >
+        </FastCard>
+        <FastCard
+          title="Flexible storage."
+          description="Save files on your local drive or connect to any cloud storage provider (like AWS S3 or MinIO) with a simple setting."
+        >
+          <svg
+            class="w-8 h-8 text-blue-500 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"
+            ></path></svg
+          >
+        </FastCard>
+      </div>
+    </div>
+
+    <div
+      class="w-full max-w-5xl mx-auto px-6 flex justify-end gap-2 mt-6 select-none"
+    >
+      <button
+        type="button"
+        onclick="document.getElementById('carousel-2').scrollBy({left: -260, behavior: 'smooth'})"
+        class="p-2 rounded-full border border-white/10 hover:bg-white/5 text-neutral-300 transition duration-150 focus:outline-none"
+        aria-label="Previous Feature Item"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"></path></svg
+        >
+      </button>
+      <button
+        type="button"
+        onclick="document.getElementById('carousel-2').scrollBy({left: 260, behavior: 'smooth'})"
+        class="p-2 rounded-full border border-white/10 hover:bg-white/5 text-neutral-300 transition duration-150 focus:outline-none"
+        aria-label="Next Feature Item"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+          ><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </section>
+
+  <section
+    id="benchmarks"
+    class="w-full bg-black text-white pb-24 flex justify-center"
+    data-header-theme="dark"
+  >
+    <div class="w-full max-w-5xl px-6 flex flex-col">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-4xl font-semibold tracking-tight text-white mt-2">
+          See how it stacks up.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 w-full">
+        <BenchmarkCard
+          title="Sync Request Latency (TTFB)"
+          fynncloudValue="12 ms"
+          fynncloudPercent={5}
+          nextcloudValue="240 ms"
+          comparisonPercent="-95%"
+          description="Response latency for a delta sync request"
+        >
+          <span slot="fynncloud-sub" class="text-neutral-500 font-normal"
+            >(Swift + Vapor)</span
+          >
+        </BenchmarkCard>
+
+        <BenchmarkCard
+          title="Server Memory Footprint (Idle)"
+          fynncloudValue="42 MB"
+          fynncloudPercent={7}
+          nextcloudValue="626 MB"
+          nextcloudLabel="(Apache + FPM pool)"
+          comparisonPercent="-93%"
+          description="Memory consumption of idle backend services"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="w-full bg-white text-neutral-900 py-24 flex justify-center border-b border-neutral-200/50"
+    data-header-theme="light"
+  >
+    <div
+      class="w-full max-w-5xl px-6 flex flex-col md:flex-row justify-between items-center gap-12"
+    >
+      <div class="max-w-md">
+        <h2
+          class="text-4xl font-extrabold tracking-tight text-neutral-900 mt-2"
+        >
+          Open at heart.
+        </h2>
+        <p class="mt-4 text-neutral-600 leading-relaxed text-sm">
+          FynnCloud is open source and always will be. You can audit, deploy,
+          and configure the code entirely on your own hardware. Star the
+          organization on GitHub to show support.
+        </p>
+      </div>
+
+      <div
+        class="w-full max-w-sm rounded-2xl bg-white border border-neutral-200 p-6 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col gap-4"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 select-none">
+            <svg
+              class="w-7 h-7 text-neutral-900"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              ></path></svg
+            >
+            <div class="flex flex-col">
+              <span class="text-xs font-bold text-neutral-900"
+                >FynnCloudProject</span
+              >
+              <span class="text-[9px] text-neutral-500 font-mono mt-0.5"
+                >github.com/FynnCloudProject</span
+              >
+            </div>
+          </div>
+          <a
+            href="https://github.com/FynnCloudProject"
+            target="_blank"
+            rel="noopener"
+            class="text-[9px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full border border-blue-200 transition"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="w-full bg-[#EAECEF] text-neutral-500 py-16 flex justify-center"
+    data-header-theme="light"
+  >
+    <div class="w-full max-w-5xl px-6 flex flex-col gap-10">
+      <div
+        class="text-[10px] text-neutral-500 space-y-2 border-b border-neutral-300 pb-8 leading-relaxed"
+      >
+        <p>
+          1. TTFB (Time to First Byte) request latency benchmarks conducted in
+          June 2026. Represents request execution overhead for sync delta polls
+          in a clean schema state. Testing performed on a Raspberry Pi 5 (4GB
+          RAM) hosting a release-mode FynnCloud server binary comparing against
+          Nextcloud v29 running in Apache with PHP-FPM container wrapper.
+        </p>
+        <p>
+          2. Server Memory Footprint represents base resident set size (RSS)
+          utilization when starting up services in an idle state. Nextcloud base
+          configuration includes Apache, Redis cache database, and active
+          PHP-FPM worker pools. FynnCloud runs as a compiled statically linked
+          standalone server executable.
+        </p>
+        <p>
+          3. FynnCloud project is currently in early alpha stage of development.
+          The APIs, desktop sync logic, and database schemas are subject to
+          change. Not recommended for production storage deployments.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center justify-center select-none gap-3">
+          <img
+            src="/img/logo.svg"
+            alt="FynnCloud Footer Logo"
+            class="h-10 w-auto"
+          />
+          <p class="text-lg font-light leading-none">
+            FynnCloud<br />
+            <span class="text-xs text-neutral-400 tracking-tight">© 2026</span>
+          </p>
+        </div>
+        <div
+          class="flex items-center gap-4 text-xs font-semibold text-neutral-500"
+        >
+          <a
+            class="hover:text-neutral-800 transition duration-150"
+            href="https://github.com/FynnCloudProject"
+            target="_blank"
+            rel="noopener">GitHub</a
+          >
+          <span class="text-neutral-300 font-normal select-none">•</span>
+          <a
+            class="hover:text-neutral-800 transition duration-150"
+            href="https://github.com/FynnCloudProject/fynncloud.ch"
+            target="_blank"
+            rel="noopener">Website Source</a
+          >
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

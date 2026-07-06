@@ -14,3 +14,67 @@
   --color-primary-900: var(--color-blue-900);
   --color-primary-950: var(--color-blue-950);
 }
+
+/* Custom utility to hide scrollbars on carousels */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Header themes for dynamic scroll coloring */
+#main-header-container.theme-dark {
+  background-color: rgba(24, 24, 27, 0.2); /* bg-zinc-900/20 */
+  border-color: rgba(255, 255, 255, 0.1); /* border-white/10 */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+#main-header-container.theme-light {
+  background-color: rgba(255, 255, 255, 0.1); /* bg-white/10 */
+  border-color: rgba(9, 9, 11, 0.1); /* border-zinc-900/10 */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.theme-dark #header-brand-text {
+  color: #ffffff;
+}
+.theme-light #header-brand-text {
+  color: #18181b; /* text-zinc-900 */
+}
+
+.theme-dark .header-nav-link {
+  color: #d4d4d8; /* text-zinc-300 */
+}
+.theme-dark .header-nav-link:hover {
+  color: #ffffff;
+}
+
+.theme-light .header-nav-link {
+  color: #71717a; /* text-zinc-500 */
+}
+.theme-light .header-nav-link:hover {
+  color: #18181b;
+}
+
+/* Custom Carousel styles to ensure proper padding and prevent edge touching */
+.carousel-scroller {
+  scroll-padding-left: calc((100vw - min(100vw, 64rem)) / 2 + 1.5rem);
+  scroll-padding-right: calc((100vw - min(100vw, 64rem)) / 2 + 1.5rem);
+}
+
+.carousel-track {
+  padding-left: calc((100vw - min(100vw, 64rem)) / 2 + 1.5rem);
+  padding-right: calc((100vw - min(100vw, 64rem)) / 2 + 1.5rem);
+}
+
+@media (max-width: 1024px) {
+  .carousel-scroller {
+    scroll-padding-left: 1.5rem !important;
+    scroll-padding-right: 1.5rem !important;
+  }
+  .carousel-track {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}

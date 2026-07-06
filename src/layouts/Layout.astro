@@ -2,62 +2,111 @@
 import "../styles/global.css";
 
 interface Props {
-    title?: string;
+  title?: string;
 }
 
-const { title = "FynnCloud – Self-Hosted Cloud Storage" } = Astro.props;
+const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="/img/logo.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <meta
-            name="description"
-            content="FynnCloud - a self-hosted cloud storage solution built with Swift and Vapor."
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            href="/img/favicon-96x96.png"
-            sizes="96x96"
-        />
-        <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
-        <link rel="shortcut icon" href="/img/favicon.ico" />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/img/apple-touch-icon.png"
-        />
-        <meta name="apple-mobile-web-app-title" content="FynnCloud" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <title>{title}</title>
-    </head>
-    <body class="min-h-screen bg-zinc-950 font-sans antialiased text-zinc-100">
-        <div class="mx-auto flex min-h-screen max-w-4xl flex-col gap-12 px-6 py-10">
-            <header class="flex items-center justify-between rounded-2xl bg-linear-to-b from-neutral-800/90 to-neutral-900/95 px-5 py-3 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_1px_3px_rgba(0,0,0,0.3),0_2px_8px_rgba(0,0,0,0.2)] border border-white/5">
-                <a href="/" class="flex items-center gap-2.5">
-                    <img src="/img/logo.png" alt="FynnCloud" class="h-7" />
-                    <span class="text-2xl font-light text-white">FynnCloud</span>
-                </a>
-                <nav class="flex items-center gap-4 text-sm text-zinc-400">
-                    <a class="hover:text-zinc-100 transition duration-150" href="https://github.com/FynnCloudProject" target="_blank" rel="noopener">GitHub</a>
-                </nav>
-            </header>
-            <main class="flex-1">
-                <slot />
-            </main>
-            <footer class="border-t border-white/5 pt-6 text-xs text-zinc-600">
-                © FynnCloud · <a class="hover:text-zinc-400 transition duration-150" href="https://github.com/FynnCloudProject" target="_blank" rel="noopener">Source</a>
-            </footer>
-        </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/img/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="FynnCloud - a self-hosted cloud storage solution built with Swift and Vapor."
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/img/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="FynnCloud" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="min-h-screen bg-black font-inter antialiased text-zinc-100 flex flex-col"
+  >
+    <header class="sticky top-0 z-50 w-full px-4 py-4 flex justify-center">
+      <div
+        id="main-header-container"
+        class="theme-dark w-full max-w-5xl flex items-center justify-between rounded-full backdrop-blur-xl pl-6 pr-3.5 py-2.5 border transition duration-300"
+      >
+        <a href="/" class="flex items-center gap-2">
+          <img src="/img/logo.svg" alt="FynnCloud Logo" class="h-8 w-auto" />
+          <span
+            id="header-brand-text"
+            class="text-lg font-medium tracking-tight transition duration-300"
+            >FynnCloud</span
+          >
+        </a>
+        <nav class="flex items-center gap-5 text-sm font-medium">
+          <a
+            class="header-nav-link hidden sm:inline-block transition duration-300"
+            href="#features">Features</a
+          >
+          <a
+            class="header-nav-link hidden sm:inline-block transition duration-300"
+            href="#benchmarks">Benchmarks</a
+          >
+          <a
+            class="rounded-full bg-blue-600 hover:bg-blue-700 px-4 py-1.5 text-xs font-semibold text-white transition duration-150 active:scale-95"
+            href="https://github.com/FynnCloudProject"
+            target="_blank"
+            rel="noopener">GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const headerEl = document.getElementById("main-header-container");
+        const sections = document.querySelectorAll("[data-header-theme]");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "-60px 0px -90% 0px",
+          threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const theme = entry.target.getAttribute("data-header-theme");
+              if (theme === "light") {
+                headerEl.classList.remove("theme-dark");
+                headerEl.classList.add("theme-light");
+              } else {
+                headerEl.classList.remove("theme-light");
+                headerEl.classList.add("theme-dark");
+              }
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+      });
+    </script>
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+  </body>
 </html>

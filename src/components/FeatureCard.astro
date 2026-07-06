@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  paddingClass?: string;
+}
+const { title, description, paddingClass = "p-8" } = Astro.props;
+---
+
+<div class="snap-start shrink-0 w-[28rem] max-w-[85vw] flex flex-col gap-4">
+  <!-- Mockup Container -->
+  <div class={`rounded-3xl bg-[#EAECEF] border border-zinc-200/60 ${paddingClass} flex items-center justify-center aspect-[16/10] overflow-hidden select-none`}>
+    <slot />
+  </div>
+  <!-- Label Details Under Mockup -->
+  <div class="px-2">
+    <h3 class="text-xs font-bold text-zinc-900 inline">{title}</h3>
+    <span class="text-xs text-zinc-500 leading-relaxed ml-1">{description}</span>
+  </div>
+</div>
