@@ -40,6 +40,7 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
     <meta name="apple-mobile-web-app-title" content="FynnCloud" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
+    <slot name="head" />
   </head>
   <body
     class="min-h-screen bg-black font-inter antialiased text-zinc-100 flex flex-col"
