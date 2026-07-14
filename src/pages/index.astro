@@ -4,6 +4,8 @@ import FeatureCard from "../components/FeatureCard.astro";
 import FastCard from "../components/FastCard.astro";
 import BenchmarkCard from "../components/BenchmarkCard.astro";
 import PricingCard from "../components/PricingCard.astro";
+
+const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
 ---
 
 <Layout>
@@ -1048,7 +1050,7 @@ import PricingCard from "../components/PricingCard.astro";
     </div>
   </div>
 
-  <script is:inline>
+  <script define:vars={{ publicApiUrl }} is:inline>
     (() => {
       let stripe = null;
       let checkoutInstance = null;
@@ -1166,7 +1168,7 @@ import PricingCard from "../components/PricingCard.astro";
           btnProceed.textContent = "Processing...";
 
           try {
-            const apiBase = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
+            const apiBase = publicApiUrl;
             const res = await fetch(`${apiBase}/api/checkout/intent`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
