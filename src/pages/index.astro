@@ -576,7 +576,7 @@ import PricingCard from "../components/PricingCard.astro";
             { text: "Standard support" },
           ]}
           ctaText="Get Started Now"
-          ctaHref="/checkout?tier=business"
+          ctaTier="business"
           highlighted={true}
         />
 
@@ -594,7 +594,7 @@ import PricingCard from "../components/PricingCard.astro";
             { text: "Priority SLA support" },
           ]}
           ctaText="Get Started Now"
-          ctaHref="/checkout?tier=enterprise"
+          ctaTier="enterprise"
         />
       </div>
 
@@ -772,11 +772,20 @@ import PricingCard from "../components/PricingCard.astro";
           // Update CTA button details
           fynncloudCTA.textContent = tier.ctaText;
           if (currentTierKey === "business") {
-            fynncloudCTA.href = `/checkout?tier=business&quantity=${users}`;
+            fynncloudCTA.href = "#";
+            fynncloudCTA.setAttribute("data-checkout-tier", "business");
+            fynncloudCTA.setAttribute("data-quantity", users.toString());
+            fynncloudCTA.removeAttribute("target");
           } else if (currentTierKey === "enterprise") {
-            fynncloudCTA.href = `/checkout?tier=enterprise&quantity=1`;
+            fynncloudCTA.href = "#";
+            fynncloudCTA.setAttribute("data-checkout-tier", "enterprise");
+            fynncloudCTA.setAttribute("data-quantity", "1");
+            fynncloudCTA.removeAttribute("target");
           } else {
             fynncloudCTA.href = tier.ctaLink;
+            fynncloudCTA.removeAttribute("data-checkout-tier");
+            fynncloudCTA.removeAttribute("data-quantity");
+            fynncloudCTA.setAttribute("target", "_blank");
           }
         }
 
@@ -1130,31 +1139,16 @@ import PricingCard from "../components/PricingCard.astro";
           });
         }
 
-        // Bind all checkout links
-        const bindCheckoutLinks = () => {
-          const links = document.querySelectorAll('a[href*="/checkout"]');
-          links.forEach(link => {
-            // Remove previous listener to avoid duplicate bindings
-            link.removeAttribute("data-checkout-bound");
-            link.addEventListener("click", (e) => {
-              e.preventDefault();
-              const url = new URL(link.href, window.location.origin);
-              const tier = url.searchParams.get("tier") || "business";
-              const quantity = parseInt(url.searchParams.get("quantity") || "15", 10);
-              openModal(tier, quantity);
-            });
-            link.setAttribute("data-checkout-bound", "true");
-          });
-        };
-
-        bindCheckoutLinks();
-
-        // Re-bind when the calculator updates CTA link
-        const observer = new MutationObserver(bindCheckoutLinks);
-        const ctaBtn = document.getElementById("fynncloud-calc-cta");
-        if (ctaBtn) {
-          observer.observe(ctaBtn, { attributes: true, attributeFilter: ["href"] });
-        }
+        // Use event delegation for any elements with [data-checkout-tier]
+        document.addEventListener("click", (e) => {
+          const target = e.target.closest("[data-checkout-tier]");
+          if (target) {
+            e.preventDefault();
+            const tier = target.getAttribute("data-checkout-tier") || "business";
+            const quantity = parseInt(target.getAttribute("data-quantity") || "15", 10);
+            openModal(tier, quantity);
+          }
+        });
 
         btnProceed.addEventListener("click", async () => {
           const email = emailInput.value.trim();

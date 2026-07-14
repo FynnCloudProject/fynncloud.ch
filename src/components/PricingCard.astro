@@ -13,6 +13,7 @@ interface Props {
   features: Feature[];
   ctaText: string;
   ctaHref?: string;
+  ctaTier?: string;
   highlighted?: boolean;
 }
 
@@ -25,6 +26,7 @@ const {
   features,
   ctaText,
   ctaHref,
+  ctaTier,
   highlighted = false,
 } = Astro.props;
 
@@ -36,7 +38,10 @@ const cardClasses = highlighted
 const buttonClasses = highlighted
   ? "block w-full text-center bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white py-2.5 px-4 rounded-xl text-xs font-semibold shadow-md transition duration-150"
   : "block w-full text-center bg-neutral-100 hover:bg-neutral-200 active:scale-[0.98] text-neutral-800 py-2.5 px-4 rounded-xl text-xs font-semibold border border-neutral-200 transition duration-150";
+
+const isExternal = ctaHref && (ctaHref.startsWith("http://") || ctaHref.startsWith("https://"));
 ---
+
 
 <div class={cardClasses}>
   {highlighted && (
@@ -97,14 +102,14 @@ const buttonClasses = highlighted
     {ctaHref ? (
       <a
         href={ctaHref}
-        target="_blank"
-        rel="noopener"
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener" : undefined}
         class={buttonClasses}
       >
         {ctaText}
       </a>
     ) : (
-      <button class={buttonClasses}>
+      <button class={buttonClasses} data-checkout-tier={ctaTier}>
         {ctaText}
       </button>
     )}
