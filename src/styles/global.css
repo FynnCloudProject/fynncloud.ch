@@ -15,6 +15,17 @@
   --color-primary-950: var(--color-blue-950);
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
+/* Smooth-scroll to in-page anchors, offset for the sticky header.
+   Easing is handled in JS (see Layout.astro); this stays the fallback. */
+html {
+  scroll-padding-top: 6rem;
+}
+
 /* Custom utility to hide scrollbars on carousels */
 .scrollbar-none::-webkit-scrollbar {
   display: none;

@@ -72,7 +72,7 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
             href="#pricing">Pricing</a
           >
           <a
-            class="rounded-full bg-blue-600 hover:bg-blue-700 px-4 py-1.5 text-xs font-semibold text-white transition duration-150 active:scale-95"
+            class="rounded-full bg-gradient-to-b from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-1.5 text-xs font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_2px_6px_rgba(37,99,235,0.25)] transition duration-150 active:scale-95"
             href="https://github.com/FynnCloudProject"
             target="_blank"
             rel="noopener">GitHub</a
@@ -108,6 +108,54 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
         }, observerOptions);
 
         sections.forEach((section) => observer.observe(section));
+      });
+    </script>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const HEADER_OFFSET = 96; // matches scroll-padding-top: 6rem
+        const DURATION = 700;
+
+        // easeInOutCubic
+        const ease = (t) =>
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        const scrollToTarget = (target) => {
+          const startY = window.scrollY;
+          const endY =
+            target.getBoundingClientRect().top + startY - HEADER_OFFSET;
+          const distance = endY - startY;
+
+          if (prefersReduced || Math.abs(distance) < 1) {
+            window.scrollTo(0, endY);
+            return;
+          }
+
+          let startTime = null;
+          const step = (now) => {
+            if (startTime === null) startTime = now;
+            const progress = Math.min((now - startTime) / DURATION, 1);
+            window.scrollTo(0, startY + distance * ease(progress));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const id = link.getAttribute("href");
+            if (!id || id === "#") return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            event.preventDefault();
+            scrollToTarget(target);
+            history.pushState(null, "", id);
+          });
+        });
       });
     </script>
     <main class="flex-1 w-full">

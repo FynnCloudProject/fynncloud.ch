@@ -26,6 +26,7 @@ jobs:
         uses: withastro/action@v5
         env:
           PUBLIC_API_URL: 'https://portal.fynncloud.ch'
+          PUBLIC_PORTAL_URL: 'https://portal.fynncloud.ch'
 
   deploy:
     needs: build

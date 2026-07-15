@@ -5,11 +5,10 @@ import FastCard from "../components/FastCard.astro";
 import BenchmarkCard from "../components/BenchmarkCard.astro";
 import PricingCard from "../components/PricingCard.astro";
 
-const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
+const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
 ---
 
 <Layout>
-  <script src="https://js.stripe.com/dahlia/stripe.js" is:inline slot="head"></script>
   <section
     id="hero-section"
     class="w-full bg-black text-white pt-12 pb-16 overflow-hidden relative flex flex-col items-center justify-center border-b border-white/5"
@@ -399,15 +398,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
 
   <section
     id="pricing"
-    class="w-full bg-white text-neutral-900 py-24 border-b border-neutral-200/50 relative overflow-hidden"
+    class="w-full bg-white text-neutral-900 py-24 border-b border-neutral-200/50 relative"
     data-header-theme="light"
   >
-    <!-- Background Glows -->
-    <div
-      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"
-    >
-    </div>
-
     <div class="w-full max-w-5xl mx-auto px-6 relative z-10 flex flex-col">
       <!-- Section Header -->
       <div class="max-w-2xl mb-16">
@@ -480,11 +473,6 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           <div
             class="w-full lg:w-[22rem] bg-white border border-neutral-200/80 rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden shadow-sm"
           >
-            <div
-              class="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 rounded-full blur-2xl"
-            >
-            </div>
-
             <div class="flex flex-col gap-4 relative z-10">
               <!-- Pricing header -->
               <div>
@@ -536,7 +524,7 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
                 <a
                   href="#"
                   id="fynncloud-calc-cta"
-                  class="block w-full text-center bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white py-2.5 px-4 rounded-xl text-xs font-semibold shadow-sm transition duration-150"
+                  class="block w-full text-center bg-gradient-to-b from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 active:scale-[0.98] text-white py-2.5 px-4 rounded-xl text-xs font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_2px_6px_rgba(37,99,235,0.25)] transition duration-150"
                 >
                   Get Business License
                 </a>
@@ -555,9 +543,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           price="$0"
           priceSuffix="Free forever"
           features={[
-            { text: "Up to 10 active users" },
-            { text: "Single-node servers" },
-            { text: "Public source code" },
+            { text: "Up to 10 active users", highlight: true },
+            { text: "Native Finder sync & desktop apps" },
+            { text: "AI semantic search & secure sharing" },
             { text: "Community support" },
           ]}
           ctaText="Get Started Free"
@@ -573,9 +561,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           extraLabel="Billed annually • Cancel anytime"
           features={[
             { text: "Up to 100 active users", highlight: true },
-            { text: "Single-node servers" },
-            { text: "Commercial validation" },
-            { text: "Standard support" },
+            { text: "Everything in Homelab" },
+            { text: "SSO & directory integrations" },
+            { text: "Priority email support" },
           ]}
           ctaText="Get Started Now"
           ctaTier="business"
@@ -591,66 +579,13 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           extraLabel="Flat-rate license • Unlimited users"
           features={[
             { text: "Unlimited active users", highlight: true },
-            { text: "High-availability & multi-node" },
-            { text: "Kubernetes & custom backends" },
+            { text: "Everything in Business" },
+            { text: "High-availability, multi-node & Kubernetes" },
             { text: "Priority SLA support" },
           ]}
           ctaText="Get Started Now"
           ctaTier="enterprise"
         />
-      </div>
-
-      <!-- Licensing Strategy details card (horizontal) -->
-      <div
-        class="w-full rounded-3xl bg-neutral-50 border border-neutral-200/80 p-8 flex flex-col md:flex-row gap-8 items-center justify-between"
-      >
-        <div class="space-y-3 max-w-xl">
-          <div class="flex items-center gap-2">
-            <svg
-              class="w-5 h-5 text-blue-600"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path></svg
-            >
-            <h4 class="text-base font-bold text-neutral-900">
-              Business Source License (BSL 1.1)
-            </h4>
-          </div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            FynnCloud's source code is publicly viewable, completely
-            self-hostable, and free to modify or run for personal or micro-team
-            use.
-          </p>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            To support sustainable development, teams exceeding community or
-            business limits obtain a commercial license.
-            <span class="text-blue-600 font-semibold"
-              >Crucially, after a rolling 3-year period, the code automatically
-              converts to the standard open-source Apache 2.0 license.</span
-            >
-          </p>
-        </div>
-        <div
-          class="shrink-0 flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-neutral-200/80 text-center w-full md:w-56 gap-2 shadow-sm"
-        >
-          <span
-            class="text-xs font-semibold text-blue-600"
-            >Rolling Period</span
-          >
-          <span class="text-3xl font-bold text-neutral-900"
-            >3 Years</span
-          >
-          <span class="text-xs text-neutral-500"
-            >converts to Apache 2.0</span
-          >
-        </div>
       </div>
     </div>
   </section>
@@ -687,9 +622,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           homelab: {
             features: [
               "Up to 10 active users",
-              "Single-node servers",
+              "Native Finder sync & desktop apps",
+              "AI semantic search & secure sharing",
               "Community support",
-              "Free for personal use",
             ],
             ctaText: "Get Started Free",
             ctaLink: "https://github.com/FynnCloudProject",
@@ -697,9 +632,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           business: {
             features: [
               "Up to 100 active users",
-              "Single-node servers",
-              "Commercial validation",
-              "Standard support",
+              "Everything in Homelab",
+              "SSO & directory integrations",
+              "Priority email support",
             ],
             ctaText: "Get Started Now",
             ctaLink: "https://github.com/FynnCloudProject",
@@ -707,9 +642,9 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           enterprise: {
             features: [
               "Unlimited active users",
-              "Multi-node setups",
+              "Everything in Business",
+              "High-availability, multi-node & Kubernetes",
               "Priority SLA support",
-              "High-availability support",
             ],
             ctaText: "Get Started Now",
             ctaLink: "https://github.com/FynnCloudProject",
@@ -730,7 +665,7 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
           if (users <= 10) {
             fynnAnnual = 0;
             tierName = "Homelab Tier";
-            fynnBreakdownText = "Free under BSL license";
+            fynnBreakdownText = "Free for homelab use";
             currentTierKey = "homelab";
           } else {
             const businessCost = users * 2 * 12;
@@ -806,60 +741,6 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
   </script>
 
   <section
-    class="w-full bg-white text-neutral-900 py-24 flex justify-center border-b border-neutral-200/50"
-    data-header-theme="light"
-  >
-    <div
-      class="w-full max-w-5xl px-6 flex flex-col md:flex-row justify-between items-center gap-12"
-    >
-      <div class="max-w-md">
-        <h2
-          class="text-4xl font-extrabold tracking-tight text-neutral-900 mt-2"
-        >
-          Open at heart.
-        </h2>
-        <p class="mt-4 text-neutral-600 leading-relaxed text-sm">
-          FynnCloud is open-source, community-driven, and fully self-hostable.
-          Maintain complete ownership of your data and infrastructure.
-        </p>
-      </div>
-
-      <div
-        class="w-full max-w-sm rounded-2xl bg-white border border-neutral-200 p-6 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col gap-4"
-      >
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3 select-none">
-            <svg
-              class="w-7 h-7 text-neutral-900"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              ><path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              ></path></svg
-            >
-            <div class="flex flex-col">
-              <span class="text-xs font-bold text-neutral-900"
-                >FynnCloudProject</span
-              >
-              <span class="text-xs text-neutral-500 mt-0.5"
-                >github.com/FynnCloudProject</span
-              >
-            </div>
-          </div>
-          <a
-            href="https://github.com/FynnCloudProject"
-            target="_blank"
-            rel="noopener"
-            class="text-[9px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-full border border-blue-200 transition"
-          >
-            View on GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
     class="w-full bg-[#EAECEF] text-neutral-500 py-16 flex justify-center"
     data-header-theme="light"
   >
@@ -922,351 +803,20 @@ const publicApiUrl = import.meta.env.PUBLIC_API_URL || "http://localhost:8080";
     </div>
   </section>
 
-  <!-- Unified Checkout Modal -->
-  <div
-    id="checkout-modal"
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto"
-  >
-    <div
-      class="bg-white rounded-3xl w-full max-w-lg p-6 relative shadow-2xl my-auto text-neutral-900 flex flex-col gap-4"
-    >
-      <!-- Close Button -->
-      <button
-        id="btn-close-checkout-modal"
-        class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900 transition cursor-pointer"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <h3 class="text-xl font-bold text-neutral-900 mb-1" id="checkout-modal-title">
-        Complete Subscription
-      </h3>
-
-      <!-- Order Summary Card -->
-      <div
-        class="bg-neutral-50 border border-neutral-200/80 rounded-2xl p-4 flex justify-between items-center text-sm text-neutral-900"
-      >
-        <div>
-          <span class="font-bold text-neutral-800" id="checkout-summary-plan"
-            >Business License</span
-          >
-          <span
-            class="text-xs text-neutral-500 block mt-0.5"
-            id="checkout-summary-details">15 Seats • Billed annually</span
-          >
-        </div>
-        <div class="text-right">
-          <span
-            class="font-bold text-neutral-900 text-base"
-            id="checkout-summary-total">$360.00</span
-          >
-        </div>
-      </div>
-
-      <!-- Step 1: Email Input Container -->
-      <div id="checkout-email-step" class="space-y-4">
-        <!-- Dynamic Seat Selector (Business Only) -->
-        <div id="modal-seats-section" class="space-y-3 p-4 bg-neutral-50 rounded-2xl border border-neutral-100 hidden">
-          <div class="flex justify-between items-center text-sm">
-            <span class="font-bold text-neutral-800">User Seats</span>
-            <span class="font-bold text-blue-600" id="modal-seats-display">15 Seats</span>
-          </div>
-          <input
-            type="range"
-            id="modal-seats-slider"
-            min="5"
-            max="100"
-            value="15"
-            class="w-full h-1.5 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
-          />
-          <div class="flex justify-between text-[10px] text-neutral-450 font-medium">
-            <span>Min: 5 Users</span>
-            <span>Max: 100 Users</span>
-          </div>
-        </div>
-
-        <div class="space-y-2">
-          <label
-            for="checkout-modal-email"
-            class="text-xs font-semibold text-neutral-500"
-            >Email Address</label
-          >
-          <input
-            type="email"
-            id="checkout-modal-email"
-            placeholder="you@example.com"
-            required
-            class="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm text-neutral-900 focus:outline-none focus:border-blue-600 transition duration-150"
-          />
-        </div>
-        <button
-          type="button"
-          id="btn-proceed-to-payment"
-          class="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition flex items-center justify-center gap-2 cursor-pointer"
-        >
-          Proceed to Payment
-        </button>
-      </div>
-
-      <!-- Step 2: Stripe Payment Element Container (Hidden initially) -->
-      <div id="checkout-payment-step" class="hidden space-y-4">
-        <!-- Spinner -->
-        <div
-          id="checkout-modal-spinner"
-          class="flex flex-col items-center justify-center py-8 gap-3"
-        >
-          <div
-            class="animate-spin rounded-full h-8 w-8 border-2 border-neutral-300 border-t-blue-600"
-          ></div>
-          <p class="text-xs text-neutral-500">Loading secure checkout form...</p>
-        </div>
-
-        <!-- Mount container for Stripe Element -->
-        <div id="stripe-checkout-mount" class="mb-4 hidden"></div>
-
-        <!-- Submit Button -->
-        <button
-          id="btn-submit-payment"
-          class="hidden w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-        >
-          <span id="btn-submit-text">Pay Now</span>
-        </button>
-      </div>
-
-      <p class="text-[10px] text-neutral-500 text-center leading-relaxed">
-        Payments are processed securely via Stripe. Accounts are configured instantly.
-      </p>
-    </div>
-  </div>
-
-  <script define:vars={{ publicApiUrl }} is:inline>
+  <!-- Checkout is handled by the shared subscribe page on the portal -->
+  <script define:vars={{ portalUrl }} is:inline>
     (() => {
-      let stripe = null;
-      let checkoutInstance = null;
-      let paymentElement = null;
-      let selectedTier = "business";
-      let selectedQuantity = 15;
-
-      const initCheckoutModal = () => {
-        const modal = document.getElementById("checkout-modal");
-        const btnClose = document.getElementById("btn-close-checkout-modal");
-        const emailStep = document.getElementById("checkout-email-step");
-        const paymentStep = document.getElementById("checkout-payment-step");
-        const btnProceed = document.getElementById("btn-proceed-to-payment");
-        const emailInput = document.getElementById("checkout-modal-email");
-        const stripeMount = document.getElementById("stripe-checkout-mount");
-        const btnSubmit = document.getElementById("btn-submit-payment");
-        const btnSubmitText = document.getElementById("btn-submit-text");
-        const spinner = document.getElementById("checkout-modal-spinner");
-
-        const summaryPlan = document.getElementById("checkout-summary-plan");
-        const summaryDetails = document.getElementById("checkout-summary-details");
-        const summaryTotal = document.getElementById("checkout-summary-total");
-
-        const seatsSection = document.getElementById("modal-seats-section");
-        const seatsSlider = document.getElementById("modal-seats-slider");
-        const seatsDisplay = document.getElementById("modal-seats-display");
-
-        if (!modal || !btnClose || !emailStep || !paymentStep || !btnProceed || !emailInput || !stripeMount || !btnSubmit || !btnSubmitText || !spinner) {
-          return;
-        }
-
-        const openModal = (tier, quantity) => {
-          selectedTier = tier;
-          selectedQuantity = quantity;
-
-          // Update summary text and configure seats selector
-          if (tier === "business") {
-            summaryPlan.textContent = "Business License";
-            summaryDetails.textContent = `${quantity} Seats • Billed annually`;
-            summaryTotal.textContent = `$${(quantity * 2 * 12).toLocaleString()}.00`;
-            if (seatsSection && seatsSlider && seatsDisplay) {
-              seatsSlider.value = quantity;
-              seatsDisplay.textContent = `${quantity} Seats`;
-              seatsSection.classList.remove("hidden");
-            }
-          } else {
-            summaryPlan.textContent = "Enterprise License";
-            summaryDetails.textContent = "Flat-rate Unlimited • Billed annually";
-            summaryTotal.textContent = "$2,500.00";
-            if (seatsSection) {
-              seatsSection.classList.add("hidden");
-            }
-          }
-
-          // Reset modal state to Step 1 (email input)
-          emailStep.classList.remove("hidden");
-          paymentStep.classList.add("hidden");
-          stripeMount.classList.add("hidden");
-          btnSubmit.classList.add("hidden");
-          emailInput.value = "";
-          btnProceed.disabled = false;
-          btnProceed.textContent = "Proceed to Payment";
-
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
-        };
-
-        const closeModal = () => {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-
-          if (paymentElement) {
-            paymentElement.destroy();
-            paymentElement = null;
-          }
-          checkoutInstance = null;
-        };
-
-        btnClose.addEventListener("click", closeModal);
-
-        if (seatsSlider && seatsDisplay) {
-          seatsSlider.addEventListener("input", () => {
-            const quantity = parseInt(seatsSlider.value, 10);
-            selectedQuantity = quantity;
-            seatsDisplay.textContent = `${quantity} Seats`;
-            summaryDetails.textContent = `${quantity} Seats • Billed annually`;
-            summaryTotal.textContent = `$${(quantity * 2 * 12).toLocaleString()}.00`;
-          });
-        }
-
-        // Use event delegation for any elements with [data-checkout-tier]
-        document.addEventListener("click", (e) => {
-          const target = e.target.closest("[data-checkout-tier]");
-          if (target) {
-            e.preventDefault();
-            const tier = target.getAttribute("data-checkout-tier") || "business";
-            const quantity = parseInt(target.getAttribute("data-quantity") || "15", 10);
-            openModal(tier, quantity);
-          }
-        });
-
-        btnProceed.addEventListener("click", async () => {
-          const email = emailInput.value.trim();
-          if (!email) {
-            alert("Please enter your email address to continue.");
-            return;
-          }
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            alert("Please enter a valid email address.");
-            return;
-          }
-
-          btnProceed.disabled = true;
-          btnProceed.textContent = "Processing...";
-
-          try {
-            const apiBase = publicApiUrl;
-            const res = await fetch(`${apiBase}/api/checkout/intent`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                tier: selectedTier,
-                quantity: selectedQuantity,
-                email: email,
-              }),
-            });
-
-            if (!res.ok) {
-              const errData = await res.json().catch(() => ({}));
-              throw new Error(errData.reason || "Server failed to create checkout session");
-            }
-
-            const data = await res.json();
-            const clientSecret = data.clientSecret;
-
-            // Transition to Step 2 (payment element loading)
-            emailStep.classList.add("hidden");
-            paymentStep.classList.remove("hidden");
-            spinner.classList.remove("hidden");
-
-            if (!stripe) {
-              stripe = window.Stripe("pk_test_51Tr4cWBou1drPkDif1X3wlrwinJbsIee7Ogyzn2n3nGDuN3pjIfxr3gOOgCf2LKOf1NW2hiGUZs7fhYJqkpyjlx800WUWngOjW");
-            }
-
-            checkoutInstance = await stripe.initCheckoutElementsSdk({
-              clientSecret,
-              elementsOptions: {
-                appearance: {
-                  theme: "stripe",
-                  variables: {
-                    colorPrimary: "#2563eb",
-                    colorBackground: "#ffffff",
-                    colorText: "#171717",
-                    borderRadius: "12px",
-                    fontFamily: "Inter, system-ui, -apple-system, sans-serif",
-                  },
-                },
-              },
-            });
-
-            paymentElement = checkoutInstance.createPaymentElement({
-              layout: {
-                type: "tabs",
-                defaultCollapsed: false,
-              },
-            });
-            paymentElement.mount("#stripe-checkout-mount");
-
-            paymentElement.on("ready", () => {
-              spinner.classList.add("hidden");
-              stripeMount.classList.remove("hidden");
-              btnSubmit.classList.remove("hidden");
-              btnSubmit.disabled = false;
-              btnSubmitText.textContent = "Pay Now";
-            });
-
-          } catch (err) {
-            console.error("Checkout intent initialization failed:", err);
-            alert(err.message || "Failed to initiate payment. Please try again.");
-            btnProceed.disabled = false;
-            btnProceed.textContent = "Proceed to Payment";
-          }
-        });
-
-        btnSubmit.addEventListener("click", async () => {
-          if (!checkoutInstance) return;
-          btnSubmit.disabled = true;
-          btnSubmitText.textContent = "Processing...";
-
-          try {
-            const { type, actions } = await checkoutInstance.loadActions();
-            if (type === "success") {
-              const result = await actions.confirm();
-              if (result.error) {
-                alert(result.error.message || "Payment confirmation failed.");
-                btnSubmit.disabled = false;
-                btnSubmitText.textContent = "Pay Now";
-              }
-            } else {
-              throw new Error("Failed to load checkout actions");
-            }
-          } catch (err) {
-            console.error("Payment confirmation error:", err);
-            alert("An error occurred while confirming payment. Please try again.");
-            btnSubmit.disabled = false;
-            btnSubmitText.textContent = "Pay Now";
-          }
-        });
+      const goToCheckout = (e) => {
+        const target = e.target.closest("[data-checkout-tier]");
+        if (!target) return;
+        e.preventDefault();
+        const tier = target.getAttribute("data-checkout-tier") || "business";
+        const quantity = target.getAttribute("data-quantity");
+        const params = new URLSearchParams({ tier });
+        if (quantity) params.set("seats", quantity);
+        window.location.href = `${portalUrl}/subscribe?${params.toString()}`;
       };
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initCheckoutModal);
-      } else {
-        initCheckoutModal();
-      }
+      document.addEventListener("click", goToCheckout);
     })();
   </script>
 </Layout>
