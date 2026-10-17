@@ -1,27 +1,9 @@
-<svg width="462" height="305" viewBox="0 0 462 305" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_ii_3_24)">
-<path d="M105.764 67.9524C141.944 -33.0479 260.119 -3.92582 281.786 43.0598C282.26 44.0869 283.463 44.5604 284.507 44.1262C326.265 26.7594 372.598 42.82 387.31 95.2863C387.487 95.9177 387.983 96.4473 388.599 96.6721C506.889 139.846 469.738 304.957 365.497 304.957H79.6144C14.4331 307.33 -38.4127 210.088 37.0685 149.456C37.6096 149.022 37.9088 148.302 37.8351 147.612C31.1988 85.47 77.8706 68.0972 103.707 69.3498C104.617 69.3938 105.456 68.8103 105.764 67.9524Z" fill="url(#paint0_linear_3_24)"/>
-</g>
-<defs>
-<filter id="filter0_ii_3_24" x="9.15527e-05" y="-10.7999" width="462" height="332" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="16.2"/>
-<feGaussianBlur stdDeviation="8.1"/>
-<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_3_24"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="-10.8"/>
-<feGaussianBlur stdDeviation="8.1"/>
-<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="effect1_innerShadow_3_24" result="effect2_innerShadow_3_24"/>
-</filter>
-<linearGradient id="paint0_linear_3_24" x1="283.077" y1="-22.9998" x2="282.933" y2="425.092" gradientUnits="userSpaceOnUse">
-<stop stop-color="#2B7FFF"/>
-<stop offset="1" stop-color="#0900FF"/>
-</linearGradient>
-</defs>
+<svg width="256" height="256" viewBox="28 20 208 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    path { fill: #09090b; }
+    @media (prefers-color-scheme: dark) {
+      path { fill: #ffffff; }
+    }
+  </style>
+  <path d="M40 142 C40 121.013 57.013 104 78 104 C80.259 104 82.486 104.197 84.65 104.424 C105.53 109.629 121 128.508 121 151 C121 161.896 117.37 171.944 111.252 180 L78 180 C57.013 180 40 162.987 40 142 Z M125.539 180 C130.293 171.404 133 161.518 133 151 C133 123.156 114.034 99.742 88.316 92.972 C89.991 89.484 92.113 86.251 94.607 83.348 C123.254 92.489 144 119.322 144 151 C144 161.33 141.794 171.146 137.827 180 L125.539 180 Z M128 68 C150.536 68 169.115 84.942 171.694 106.785 C176.11 104.989 180.939 104 186 104 C206.987 104 224 121.013 224 142 C224 162.987 206.987 180 186 180 L152.925 180 C156.209 170.95 158 161.184 158 151 C158 116.245 137.141 86.361 107.258 73.186 C113.438 69.877 120.5 68 128 68 Z M182.719 164.344 L182.719 149.594 L198.625 149.594 C200.75 149.594 202.156 148.344 202.156 146.312 C202.156 144.281 200.75 143.031 198.625 143.031 L182.719 143.031 L182.719 129.719 L200.25 129.719 C202.438 129.719 203.938 128.406 203.938 126.312 C203.938 124.219 202.469 122.906 200.25 122.906 L178.688 122.906 C176.188 122.906 174.656 124.469 174.656 127.094 L174.656 164.344 C174.656 167 176.188 168.531 178.688 168.531 C181.219 168.531 182.719 167 182.719 164.344 Z" fill-rule="evenodd"/>
 </svg>
