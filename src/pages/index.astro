@@ -26,9 +26,9 @@ const portalUrl =
         </h1>
 
         <p class="mt-5 mx-auto text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl text-pretty">
-          A lightweight, compiled alternative to Nextcloud Enterprise. Built
-          with Swift and Vapor to deliver high performance on everything from
-          a Raspberry Pi to enterprise servers.
+          A fast, compiled alternative to Nextcloud. Written in Swift and Vapor
+          so it runs just as smoothly on a Raspberry Pi as it does on a rack
+          server.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -99,10 +99,9 @@ const portalUrl =
           Simply beautiful. Entirely native.
         </h2>
         <p class="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed text-pretty">
-          FynnCloud integrates directly with your operating system, behaving
-          like a native system service. Access your files instantly in Finder,
-          sync changes in real-time, and share folders without the bloat of
-          traditional web interfaces.
+          FynnCloud plugs straight into macOS instead of running a heavy
+          background app. Browse your drive in Finder, sync changes as they
+          happen, and share folders without opening a browser.
         </p>
       </div>
 
@@ -110,7 +109,7 @@ const portalUrl =
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <FeatureCard
           title="Native macOS integration."
-          description="Integrated directly into Finder. Access all your files on-demand without consuming local storage space."
+          description="Built on Apple's FileProvider API. Your cloud files show up right in Finder and download on demand, so they don't eat up local disk space."
           spanClass="lg:col-span-7"
           aspectClass="aspect-16/10"
         >
@@ -124,7 +123,7 @@ const portalUrl =
 
         <FeatureCard
           title="Real-time delta sync."
-          description="Sync only changed files and structural updates via a sequence-based delta timeline. Save bandwidth and sync updates instantly without scanning whole directories."
+          description="Only changed bytes and metadata get transferred. Updates propagate immediately without re-scanning your entire folder tree."
           spanClass="lg:col-span-5"
           aspectClass="aspect-16/10 lg:aspect-auto lg:h-full"
         >
@@ -138,7 +137,7 @@ const portalUrl =
 
         <FeatureCard
           title="Native sharing."
-          description="Share files and folders directly from the Finder context menu. Create secure links, enforce passwords, and set expiration dates."
+          description="Right-click any file or folder in Finder to grab a share link, set a password, or add an expiration date."
           spanClass="lg:col-span-5"
           aspectClass="aspect-16/10"
         >
@@ -152,7 +151,7 @@ const portalUrl =
 
         <FeatureCard
           title="Snappy web dashboard."
-          description="A responsive, modern web interface. Preview documents, manage storage, and invite team members with zero page reloads."
+          description="Need access from another machine? Preview documents, manage users, and check storage from a clean web UI that doesn't take five seconds to load."
           spanClass="lg:col-span-7"
           aspectClass="aspect-16/10"
         >
@@ -181,9 +180,9 @@ const portalUrl =
           Engineered for speed.
         </h2>
         <p class="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
-          FynnCloud launches instantly, handles heavy synchronization tasks
-          concurrently, and maintains a microscopic system footprint—verified by
-          real-world benchmarks running on a modest Raspberry Pi 5.
+          Because FynnCloud compiles to native code, it starts in milliseconds
+          and idles under 50 MB of RAM. Even on a Raspberry Pi 5, sync requests
+          return almost immediately.
         </p>
       </div>
 
@@ -197,7 +196,7 @@ const portalUrl =
         >
           <FastCard
             title="Powered by Swift."
-            description="Compiled directly to native machine code. FynnCloud utilizes Swift's modern concurrency to handle thousands of requests with sub-millisecond latency."
+            description="Compiled directly to native machine code. Swift's structured concurrency handles thousands of parallel sync requests without breaking a sweat."
             spanClass="lg:col-span-4"
           >
             <svg
@@ -215,8 +214,8 @@ const portalUrl =
           </FastCard>
 
           <FastCard
-            title="AI semantic search."
-            description="Find files, PDFs, and images by meaning rather than filename. Auto-OCR extracts text to feed a multi-modal vector search index."
+            title="Built-in OCR & search."
+            description="Search inside PDFs, screenshots, and documents by what they contain, not just what you named the file."
             spanClass="lg:col-span-4"
           >
             <svg
@@ -237,7 +236,7 @@ const portalUrl =
 
           <FastCard
             title="Single-binary deployment."
-            description="No Apache, no PHP-FPM pools, and no complex configuration files. Run the backend as a single statically-linked binary."
+            description="No Apache, no PHP-FPM worker pools, and no sprawling config files. Drop in a single binary or Docker container and you're running."
             spanClass="lg:col-span-4"
           >
             <svg
@@ -260,7 +259,7 @@ const portalUrl =
 
           <FastCard
             title="Zero-copy streaming."
-            description="Stream multi-gigabyte uploads directly to your storage backend without buffering files in memory, keeping your server stable."
+            description="Multi-gigabyte uploads stream straight to disk without buffering in RAM, so large transfers never spike memory usage."
             spanClass="lg:col-span-3"
           >
             <svg
@@ -282,8 +281,8 @@ const portalUrl =
           </FastCard>
 
           <FastCard
-            title="Modern security."
-            description="Features enterprise-ready user authentication, token-based API security, and seamless user directory integrations."
+            title="SSO & access control."
+            description="Hook up OIDC or LDAP for your team, scope API tokens per device, and keep permissions simple."
             spanClass="lg:col-span-3"
           >
             <svg
@@ -304,8 +303,8 @@ const portalUrl =
           </FastCard>
 
           <FastCard
-            title="S3-compatible."
-            description="Store files on local disks or offload them to any S3-compatible cloud storage provider with a simple configuration."
+            title="Local disk or S3."
+            description="Point FynnCloud at a local ZFS pool, a mounted NAS, or any S3-compatible bucket."
             spanClass="lg:col-span-3"
           >
             <svg
@@ -325,8 +324,8 @@ const portalUrl =
           </FastCard>
 
           <FastCard
-            title="Asynchronous job queues."
-            description="Offload intensive tasks like thumbnail generation and OCR text extraction to background Redis worker queues to keep API latency sub-millisecond."
+            title="Background workers."
+            description="Thumbnailing and OCR run on background Redis queues so file uploads and sync polls never get blocked."
             spanClass="md:col-span-2 lg:col-span-3"
           >
             <svg
@@ -359,7 +358,7 @@ const portalUrl =
             fynncloudPercent={5}
             nextcloudValue="240 ms"
             comparisonPercent="-95%"
-            description="Response latency for a delta sync request on a Raspberry Pi 5"
+            description="Time to first byte for a delta sync poll on a Raspberry Pi 5"
           >
             <span slot="fynncloud-sub" class="text-zinc-500 font-normal"
               >(Swift + Vapor)</span
@@ -373,7 +372,7 @@ const portalUrl =
             nextcloudValue="626 MB"
             nextcloudLabel="(Apache + FPM pool)"
             comparisonPercent="-93%"
-            description="Memory consumption of idle backend services on a Raspberry Pi 5"
+            description="RAM used by all backend processes at idle on a Raspberry Pi 5"
           />
         </div>
       </div>
@@ -395,8 +394,9 @@ const portalUrl =
           Fair. Scalable. Transparent.
         </h2>
         <p class="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed text-pretty">
-          We explicitly target the ignored 10-to-99-user segment with zero
-          seat minimums, alongside a highly permissive free tier for homelabs.
+          Free for homelabs and up to 10 users. For larger teams, pay $2 per
+          user with no seat minimums, or grab a flat-rate subscription for your
+          whole organization.
         </p>
       </div>
 
@@ -411,10 +411,10 @@ const portalUrl =
               <div class="flex flex-wrap items-baseline justify-between gap-4">
                 <div>
                   <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950">
-                    How many users in your team?
+                    How many people on your team?
                   </h3>
                   <p class="text-sm text-zinc-500 mt-1">
-                    Slide to estimate annual self-hosted subscription costs.
+                    Drag the slider to estimate your annual subscription.
                   </p>
                 </div>
                 <div
@@ -511,7 +511,7 @@ const portalUrl =
                 id="fynncloud-calc-cta"
                 class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:scale-99 text-white py-3 px-4 rounded-lg text-xs font-semibold transition duration-150"
               >
-                Get Started Now
+                Buy Subscription
               </a>
             </div>
           </div>
@@ -521,13 +521,13 @@ const portalUrl =
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-200">
           <PricingCard
             title="Homelab"
-            subtitle="For developers, families, and self-hosters."
+            subtitle="For personal servers, families, and self-hosters."
             price="$0"
             priceSuffix="Free forever"
             features={[
               { text: "Up to 10 active users", highlight: true },
-              { text: "Native Finder sync & desktop apps" },
-              { text: "AI semantic search & secure sharing" },
+              { text: "Native macOS Finder sync" },
+              { text: "Built-in OCR & full-text search" },
               { text: "Community support" },
             ]}
             ctaText="Get Started Free"
@@ -536,34 +536,34 @@ const portalUrl =
 
           <PricingCard
             title="Business"
-            subtitle="For growing teams and professional organizations."
+            subtitle="For teams that want an instant subscription key with no sales calls."
             price="$2"
             priceSuffix="/ user / mo"
             extraLabel="Billed annually • Cancel anytime"
             features={[
               { text: "Up to 100 active users", highlight: true },
-              { text: "Everything in Homelab" },
-              { text: "SSO & directory integrations" },
+              { text: "Instant subscription key delivery" },
+              { text: "OIDC & LDAP directory sync" },
               { text: "Priority email support" },
             ]}
-            ctaText="Get Started Now"
+            ctaText="Buy Subscription"
             ctaTier="business"
             highlighted={true}
           />
 
           <PricingCard
             title="Enterprise"
-            subtitle="For large-scale infrastructure and high-availability setups."
+            subtitle="Flat-rate annual subscription for larger organizations."
             price="$2,500"
             priceSuffix="/ yr"
             extraLabel="Flat-rate subscription • Unlimited users"
             features={[
               { text: "Unlimited active users", highlight: true },
               { text: "Everything in Business" },
-              { text: "High-availability, multi-node & Kubernetes" },
-              { text: "Priority SLA support" },
+              { text: "Multi-node & Kubernetes support" },
+              { text: "Direct engineer support & SLA" },
             ]}
-            ctaText="Get Started Now"
+            ctaText="Buy Subscription"
             ctaTier="enterprise"
           />
         </div>
@@ -605,7 +605,7 @@ const portalUrl =
             features: [
               "Up to 10 active users",
               "Native Finder sync",
-              "AI semantic search",
+              "Built-in OCR & search",
               "Community support",
             ],
             ctaText: "Get Started Free",
@@ -614,21 +614,21 @@ const portalUrl =
           business: {
             features: [
               "Up to 100 active users",
-              "Everything in Homelab",
-              "SSO & directory sync",
+              "Instant subscription key",
+              "OIDC & LDAP sync",
               "Priority email support",
             ],
-            ctaText: "Get Started Now",
+            ctaText: "Buy Subscription",
             ctaLink: "https://github.com/FynnCloudProject",
           },
           enterprise: {
             features: [
               "Unlimited active users",
               "Everything in Business",
-              "HA & Kubernetes",
-              "Priority SLA support",
+              "Multi-node & Kubernetes",
+              "Direct engineer SLA",
             ],
-            ctaText: "Get Started Now",
+            ctaText: "Buy Subscription",
             ctaLink: "https://github.com/FynnCloudProject",
           },
         };
@@ -646,7 +646,7 @@ const portalUrl =
           if (users <= 10) {
             fynnAnnual = 0;
             tierName = "Homelab Tier";
-            fynnBreakdownText = "Free for homelab use";
+            fynnBreakdownText = "Free up to 10 users";
             currentTierKey = "homelab";
           } else {
             const businessCost = users * 2 * 12;
@@ -660,7 +660,7 @@ const portalUrl =
               tierName = "Enterprise Tier";
               currentTierKey = "enterprise";
               if (users < 100) {
-                fynnBreakdownText = "Flat rate applied for cost savings";
+                fynnBreakdownText = "Capped at the flat Enterprise rate";
               } else {
                 fynnBreakdownText = "Flat rate, unlimited users";
               }
@@ -738,24 +738,18 @@ const portalUrl =
         class="text-xs text-zinc-500 space-y-2.5 border-b border-zinc-800/80 pb-8 leading-relaxed"
       >
         <p>
-          1. TTFB (Time to First Byte) request latency benchmarks conducted in
-          June 2026. Represents request execution overhead for sync delta polls
-          in a clean schema state. Testing performed on a Raspberry Pi 5 (4GB
-          RAM) hosting a release-mode FynnCloud server binary comparing against
-          Nextcloud Enterprise v29 running in Apache with PHP-FPM container
-          wrapper.
+          1. TTFB (Time to First Byte) measured in June 2026 on a Raspberry Pi 5
+          (4 GB RAM), comparing a release build of FynnCloud against Nextcloud
+          v29 (Apache + PHP-FPM) on a delta sync poll.
         </p>
         <p>
-          2. Server Memory Footprint represents base resident set size (RSS)
-          utilization when starting up services in an idle state. Nextcloud
-          Enterprise base configuration includes Apache, Redis cache database,
-          and active PHP-FPM worker pools. FynnCloud runs as a compiled
-          statically linked standalone server executable.
+          2. Idle memory footprint measures total resident set size (RSS) after
+          startup. Nextcloud includes Apache, Redis, and default PHP-FPM
+          workers; FynnCloud runs as a single compiled binary.
         </p>
         <p>
-          3. FynnCloud project is currently in early alpha stage of development.
-          The APIs, desktop sync logic, and database schemas are subject to
-          change. Not recommended for production storage deployments.
+          3. FynnCloud is currently in early alpha. APIs, sync behavior, and
+          database schemas may change before 1.0.
         </p>
       </div>
 
