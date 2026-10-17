@@ -30,84 +30,119 @@ const {
   highlighted = false,
 } = Astro.props;
 
-// CSS classes based on highlighted prop
 const cardClasses = highlighted
-  ? "rounded-3xl bg-neutral-50 border-2 border-blue-600 p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_10px_30px_rgba(37,99,235,0.05)] transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_15px_35px_rgba(37,99,235,0.1)]"
-  : "rounded-3xl bg-neutral-50 border border-neutral-200/50 p-8 flex flex-col justify-between relative overflow-hidden transition-all duration-300 hover:border-neutral-300 hover:shadow-md group";
+  ? "bg-zinc-950 text-white p-8 sm:p-9 flex flex-col justify-between relative"
+  : "bg-white text-zinc-950 p-8 sm:p-9 flex flex-col justify-between relative";
 
 const buttonClasses = highlighted
-  ? "block w-full text-center bg-gradient-to-b from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 active:scale-[0.98] text-white py-2.5 px-4 rounded-xl text-xs font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_2px_8px_rgba(37,99,235,0.3)] transition duration-150"
-  : "block w-full text-center bg-gradient-to-b from-white to-neutral-100 hover:from-neutral-50 hover:to-neutral-200 active:scale-[0.98] text-neutral-800 py-2.5 px-4 rounded-xl text-xs font-semibold border border-neutral-200 shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_1px_2px_rgba(0,0,0,0.04)] transition duration-150";
+  ? "block w-full text-center bg-blue-600 hover:bg-blue-500 active:scale-99 text-white py-3 px-4 rounded-lg text-xs font-semibold transition duration-150"
+  : "block w-full text-center bg-zinc-950 hover:bg-zinc-800 active:scale-99 text-white py-3 px-4 rounded-lg text-xs font-semibold transition duration-150";
 
-const isExternal = ctaHref && (ctaHref.startsWith("http://") || ctaHref.startsWith("https://"));
+const isExternal =
+  ctaHref && (ctaHref.startsWith("http://") || ctaHref.startsWith("https://"));
 ---
 
-
 <div class={cardClasses}>
-  <div class="space-y-6">
+  <div class="space-y-7">
     <div>
-      <div class="flex items-center gap-2">
-        <h3 class="text-2xl font-extrabold text-neutral-900">{title}</h3>
-      </div>
-      <p class="text-xs text-neutral-500 mt-2 leading-relaxed">
+      <h3
+        class={`text-2xl font-bold tracking-tight ${highlighted ? "text-white" : "text-zinc-950"}`}
+      >
+        {title}
+      </h3>
+      <p
+        class={`text-sm mt-2 leading-relaxed ${highlighted ? "text-zinc-400" : "text-zinc-500"}`}
+      >
         {subtitle}
       </p>
     </div>
 
-    <div class="space-y-1">
+    <div class="space-y-1.5">
       <div class="flex items-baseline">
-        <span class="text-4xl font-extrabold text-neutral-900">{price}</span>
-        {priceSuffix && <span class="text-xs text-neutral-500 ml-2">{priceSuffix}</span>}
+        <span
+          class={`text-4xl sm:text-5xl font-extrabold tracking-tight tabular-nums ${highlighted ? "text-white" : "text-zinc-950"}`}
+        >
+          {price}
+        </span>
+        {
+          priceSuffix && (
+            <span
+              class={`text-sm font-medium ml-2 ${highlighted ? "text-zinc-400" : "text-zinc-500"}`}
+            >
+              {priceSuffix}
+            </span>
+          )
+        }
       </div>
-      {extraLabel && (
-        <div class="text-[10px] text-blue-600 font-semibold font-mono">
-          {extraLabel}
-        </div>
-      )}
+      {
+        extraLabel ? (
+          <div
+            class={`text-xs font-medium ${highlighted ? "text-blue-400" : "text-zinc-500"}`}
+          >
+            {extraLabel}
+          </div>
+        ) : (
+          <div class="text-xs text-zinc-400 font-medium">
+            No credit card required
+          </div>
+        )
+      }
     </div>
 
-    <div class="border-t border-neutral-200 pt-6">
-      <ul class="space-y-3.5 text-xs text-neutral-600">
-        {features.map((feature) => (
-          <li class="flex items-center gap-2.5">
-            <svg
-              class="w-4 h-4 text-blue-600 shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2.5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            {feature.highlight ? (
-              <span class="font-semibold text-neutral-900">{feature.text}</span>
-            ) : (
-              <span>{feature.text}</span>
-            )}
-          </li>
-        ))}
+    <div
+      class={`border-t pt-6 ${highlighted ? "border-zinc-800" : "border-zinc-200"}`}
+    >
+      <ul
+        class={`space-y-3.5 text-sm ${highlighted ? "text-zinc-300" : "text-zinc-600"}`}
+      >
+        {
+          features.map((feature) => (
+            <li class="flex items-center gap-3">
+              <svg
+                class={`w-4 h-4 shrink-0 ${highlighted ? "text-blue-400" : "text-blue-600"}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              {feature.highlight ? (
+                <span
+                  class={`font-semibold ${highlighted ? "text-white" : "text-zinc-950"}`}
+                >
+                  {feature.text}
+                </span>
+              ) : (
+                <span>{feature.text}</span>
+              )}
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
 
-  <div class="mt-8">
-    {ctaHref ? (
-      <a
-        href={ctaHref}
-        target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener" : undefined}
-        class={buttonClasses}
-      >
-        {ctaText}
-      </a>
-    ) : (
-      <button class={buttonClasses} data-checkout-tier={ctaTier}>
-        {ctaText}
-      </button>
-    )}
+  <div class="mt-10">
+    {
+      ctaHref ? (
+        <a
+          href={ctaHref}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener" : undefined}
+          class={buttonClasses}
+        >
+          {ctaText}
+        </a>
+      ) : (
+        <button class={buttonClasses} data-checkout-tier={ctaTier}>
+          {ctaText}
+        </button>
+      )
+    }
   </div>
 </div>

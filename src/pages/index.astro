@@ -5,84 +5,147 @@ import FastCard from "../components/FastCard.astro";
 import BenchmarkCard from "../components/BenchmarkCard.astro";
 import PricingCard from "../components/PricingCard.astro";
 
-const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
+const portalUrl =
+  import.meta.env.PUBLIC_PORTAL_URL || "https://portal.fynncloud.ch";
 ---
 
 <Layout>
+  <!-- Hero Section -->
   <section
     id="hero-section"
-    class="w-full bg-black text-white pt-12 pb-16 overflow-hidden relative flex flex-col items-center justify-center border-b border-white/5"
+    class="w-full bg-zinc-950 text-white pt-14 sm:pt-20 border-b border-zinc-800/80"
     data-header-theme="dark"
   >
-    <div class="w-full max-w-6xl px-6 flex flex-col items-center relative z-10">
-      <div class="w-full max-w-3xl flex flex-col items-start">
+    <div class="w-full max-w-6xl mx-auto px-6">
+      <!-- Hero Header -->
+      <div class="mx-auto max-w-3xl text-center pb-8 sm:pb-12">
         <h1
-          class="font-semibold text-3xl sm:text-4xl md:text-5xl tracking-tight text-white max-w-3xl leading-tight"
+          class="font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-white leading-tight text-balance"
         >
           Self-hosted cloud storage that doesn't feel like 2012.
         </h1>
-        <p
-          class="mt-4 text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed"
-        >
+
+        <p class="mt-5 mx-auto text-base sm:text-lg text-zinc-400 leading-relaxed max-w-2xl text-pretty">
           A lightweight, compiled alternative to Nextcloud Enterprise. Built
-          with Swift and Vapor to deliver high performance on everything from a
-          Raspberry Pi to enterprise servers.
+          with Swift and Vapor to deliver high performance on everything from
+          a Raspberry Pi to enterprise servers.
         </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="#pricing"
+            class="inline-flex items-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition duration-150 active:scale-99"
+          >
+            <span>Get Started</span>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.25"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/FynnCloudProject"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 px-5 py-2.5 text-sm font-semibold text-zinc-200 transition duration-150 active:scale-99"
+          >
+            <svg
+              class="w-4 h-4 fill-current text-zinc-400"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
+            </svg>
+            <span>View on GitHub</span>
+          </a>
+        </div>
       </div>
-      <div class="w-full max-w-5xl relative">
+
+      <!-- Hero Hardware Mockup -->
+      <div class="w-full pt-4 sm:pt-8 pb-16 sm:pb-24">
         <img
           src="/img/HeroMBPBlackWebsite.png"
           alt="FynnCloud Finder Mockup"
-          class="w-full h-auto select-none pointer-events-none drop-shadow-[0_24px_50px_rgba(0,0,0,0.55)]"
+          fetchpriority="high"
+          class="w-full h-auto select-none pointer-events-none"
         />
       </div>
     </div>
   </section>
 
+  <!-- Native Features Section (Asymmetric Bento Grid) -->
   <section
     id="features"
-    class="w-full bg-white text-neutral-900 py-24 border-b border-neutral-200/50"
+    class="w-full bg-white text-zinc-950 py-24 sm:py-32 border-b border-zinc-200"
     data-header-theme="light"
   >
-    <div class="w-full max-w-5xl mx-auto px-6 flex flex-col mb-12">
-      <h2
-        class="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900"
-      >
-        Simply beautiful. Entirely native.
-      </h2>
-      <p class="mt-4 text-neutral-600 leading-relaxed max-w-2xl">
-        FynnCloud integrates directly with your operating system, behaving like
-        a native system service. Access your files instantly in Finder, sync
-        changes in real-time, and share folders without the bloat of traditional
-        web interfaces.
-      </p>
-    </div>
+    <div class="w-full max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-14">
+        <h2
+          class="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 leading-tight text-balance"
+        >
+          Simply beautiful. Entirely native.
+        </h2>
+        <p class="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed text-pretty">
+          FynnCloud integrates directly with your operating system, behaving
+          like a native system service. Access your files instantly in Finder,
+          sync changes in real-time, and share folders without the bloat of
+          traditional web interfaces.
+        </p>
+      </div>
 
-    <div
-      id="carousel-1"
-      class="carousel-scroller w-full overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none pb-4"
-    >
-      <div class="carousel-track flex gap-6 justify-start">
+      <!-- 12-Column Asymmetric Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <FeatureCard
           title="Native macOS integration."
           description="Integrated directly into Finder. Access all your files on-demand without consuming local storage space."
-          paddingClass="p-0"
+          spanClass="lg:col-span-7"
+          aspectClass="aspect-16/10"
         >
           <img
             src="/img/NativeMacMockup.png"
             alt="FynnCloud Finder Mockup"
+            loading="lazy"
             class="w-full h-full object-contain select-none"
+          />
+        </FeatureCard>
+
+        <FeatureCard
+          title="Real-time delta sync."
+          description="Sync only changed files and structural updates via a sequence-based delta timeline. Save bandwidth and sync updates instantly without scanning whole directories."
+          spanClass="lg:col-span-5"
+          aspectClass="aspect-16/10 lg:aspect-auto lg:h-full"
+        >
+          <img
+            src="/img/DeltaSyncStatus.png"
+            alt="FynnCloud Delta Sync Status"
+            loading="lazy"
+            class="w-full max-h-80 object-contain select-none"
           />
         </FeatureCard>
 
         <FeatureCard
           title="Native sharing."
           description="Share files and folders directly from the Finder context menu. Create secure links, enforce passwords, and set expiration dates."
-          paddingClass="p-0"
+          spanClass="lg:col-span-5"
+          aspectClass="aspect-16/10"
         >
           <img
             src="/img/NativeShareMockup.png"
             alt="FynnCloud Finder Native Share Popover"
+            loading="lazy"
             class="w-full h-full object-contain select-none"
           />
         </FeatureCard>
@@ -90,502 +153,420 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
         <FeatureCard
           title="Snappy web dashboard."
           description="A responsive, modern web interface. Preview documents, manage storage, and invite team members with zero page reloads."
-          paddingClass="p-0"
+          spanClass="lg:col-span-7"
+          aspectClass="aspect-16/10"
         >
           <img
             src="/img/ModernWebInterfaceMockup.png"
             alt="FynnCloud Web Interface Mockup"
-            class="w-full h-full object-contain select-none mt-2"
-          />
-        </FeatureCard>
-
-        <FeatureCard
-          title="Real-time delta sync."
-          description="Sync only changed files and structural updates via a sequence-based delta timeline. Save bandwidth and sync updates instantly without scanning whole directories."
-          paddingClass="p-0"
-        >
-          <img
-            src="/img/DeltaSyncStatus.png"
-            alt="FynnCloud Delta Sync Status"
+            loading="lazy"
             class="w-full h-full object-contain select-none"
           />
         </FeatureCard>
       </div>
     </div>
-
-    <div
-      class="w-full max-w-5xl mx-auto px-6 flex justify-end gap-2 mt-12 select-none"
-    >
-      <button
-        type="button"
-        onclick="document.getElementById('carousel-1').scrollBy({left: -320, behavior: 'smooth'})"
-        class="p-2 rounded-full border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-300 hover:text-neutral-600 transition duration-150 focus:outline-none"
-        aria-label="Previous Feature"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2.5"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"></path></svg
-        >
-      </button>
-      <button
-        type="button"
-        onclick="document.getElementById('carousel-1').scrollBy({left: 320, behavior: 'smooth'})"
-        class="p-2 rounded-full border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-300 hover:text-neutral-600 transition duration-150 focus:outline-none"
-        aria-label="Next Feature"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2.5"
-          ><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
-          ></path></svg
-        >
-      </button>
-    </div>
   </section>
 
-  <section class="w-full bg-black text-white py-24" data-header-theme="dark">
-    <div class="w-full max-w-5xl mx-auto px-6 flex flex-col mb-12">
-      <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white">
-        Engineered for speed.
-      </h2>
-      <p class="mt-4 text-neutral-300 leading-relaxed max-w-2xl">
-        FynnCloud launches instantly, handles heavy synchronization tasks
-        concurrently, and maintains a microscopic system footprint. Performance
-        is built into the compiler.
-      </p>
-    </div>
-
-    <div
-      id="carousel-2"
-      class="carousel-scroller w-full overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none pb-4"
-    >
-      <div class="carousel-track flex gap-6 justify-start">
-        <FastCard
-          title="Powered by Swift."
-          description="Compiled directly to native machine code. FynnCloud utilizes Swift's modern concurrency to handle thousands of requests with sub-millisecond latency."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
-        </FastCard>
-
-        <FastCard
-          title="AI semantic search."
-          description="Find files, PDFs, and images by meaning rather than filename. Auto-OCR extracts text to feed a multi-modal vector search index."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
-            ></path>
-          </svg>
-        </FastCard>
-        <FastCard
-          title="Single-binary deployment."
-          description="No Apache, no PHP-FPM pools, and no complex configuration files. Run the backend as a single statically-linked binary."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
-            ></path>
-            <path d="m3.3 7 8.7 5 8.7-5"></path>
-            <path d="M12 22V12"></path>
-          </svg>
-        </FastCard>
-        <FastCard
-          title="Zero-copy streaming."
-          description="Stream multi-gigabyte uploads directly to your storage backend without buffering files in memory, keeping your server stable."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m16 6-4-4-4 4"></path>
-            <path d="M12 2v8"></path>
-            <rect width="20" height="8" x="2" y="14" rx="2"></rect>
-            <path d="M6 18h.01"></path>
-            <path d="M10 18h.01"></path>
-          </svg>
-        </FastCard>
-        <FastCard
-          title="Modern security."
-          description="Features enterprise-ready user authentication, token-based API security, and seamless user directory integrations."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.8 17 5 19 5a1 1 0 0 1 1 1z"
-            ></path>
-            <path d="m9 12 2 2 4-4"></path>
-          </svg>
-        </FastCard>
-        <FastCard
-          title="S3-compatible."
-          description="Store files on local disks or offload them to any S3-compatible cloud storage provider with a simple configuration."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-            <path d="M3 12A9 3 0 0 0 21 12"></path>
-          </svg>
-        </FastCard>
-        <FastCard
-          title="Asynchronous job queues."
-          description="Offload intensive tasks like thumbnail generation and OCR text extraction to background Redis worker queues to keep API latency sub-millisecond."
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8 text-blue-500 shrink-0"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
-            ></path>
-            <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
-            <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
-          </svg>
-        </FastCard>
-      </div>
-    </div>
-
-    <div
-      class="w-full max-w-5xl mx-auto px-6 flex justify-end gap-2 mt-6 select-none"
-    >
-      <button
-        type="button"
-        onclick="document.getElementById('carousel-2').scrollBy({left: -260, behavior: 'smooth'})"
-        class="p-2 rounded-full border border-white/10 hover:bg-white/5 text-neutral-300 transition duration-150 focus:outline-none"
-        aria-label="Previous Feature Item"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2.5"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15 19l-7-7 7-7"></path></svg
-        >
-      </button>
-      <button
-        type="button"
-        onclick="document.getElementById('carousel-2').scrollBy({left: 260, behavior: 'smooth'})"
-        class="p-2 rounded-full border border-white/10 hover:bg-white/5 text-neutral-300 transition duration-150 focus:outline-none"
-        aria-label="Next Feature Item"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2.5"
-          ><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
-          ></path></svg
-        >
-      </button>
-    </div>
-  </section>
-
+  <!-- Engineered for Speed + Benchmarks Section (Unified Hairline Matrix) -->
   <section
-    id="benchmarks"
-    class="w-full bg-black text-white pb-24 flex justify-center"
+    id="architecture"
+    class="w-full bg-zinc-950 text-white py-24 sm:py-32 border-b border-zinc-800/80"
     data-header-theme="dark"
   >
-    <div class="w-full max-w-5xl px-6 flex flex-col">
-      <div class="max-w-2xl mb-12">
-        <h2 class="text-4xl font-semibold tracking-tight text-white mt-2">
-          See how it stacks up.
+    <div class="w-full max-w-6xl mx-auto px-6">
+      <div class="max-w-2xl mb-14">
+        <h2
+          class="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight text-balance"
+        >
+          Engineered for speed.
         </h2>
-        <p class="mt-4 text-neutral-300 leading-relaxed max-w-2xl">
-          Verified by real-world side-by-side performance benchmarks running on
-          a modest Raspberry Pi 5.
+        <p class="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed">
+          FynnCloud launches instantly, handles heavy synchronization tasks
+          concurrently, and maintains a microscopic system footprint—verified by
+          real-world benchmarks running on a modest Raspberry Pi 5.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6 w-full">
-        <BenchmarkCard
-          title="Sync Request Latency (TTFB)"
-          fynncloudValue="12 ms"
-          fynncloudPercent={5}
-          nextcloudValue="240 ms"
-          comparisonPercent="-95%"
-          description="Response latency for a delta sync request"
+      <!-- Unified Interlocking Hairline Matrix (Architecture + Benchmarks) -->
+      <div
+        class="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-800 space-y-px"
+      >
+        <!-- Top: 12-Column Architecture Grid -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-px bg-zinc-800"
         >
-          <span slot="fynncloud-sub" class="text-neutral-500 font-normal"
-            >(Swift + Vapor)</span
+          <FastCard
+            title="Powered by Swift."
+            description="Compiled directly to native machine code. FynnCloud utilizes Swift's modern concurrency to handle thousands of requests with sub-millisecond latency."
+            spanClass="lg:col-span-4"
           >
-        </BenchmarkCard>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </FastCard>
 
-        <BenchmarkCard
-          title="Server Memory Footprint (Idle)"
-          fynncloudValue="42 MB"
-          fynncloudPercent={7}
-          nextcloudValue="626 MB"
-          nextcloudLabel="(Apache + FPM pool)"
-          comparisonPercent="-93%"
-          description="Memory consumption of idle backend services"
-        />
+          <FastCard
+            title="AI semantic search."
+            description="Find files, PDFs, and images by meaning rather than filename. Auto-OCR extracts text to feed a multi-modal vector search index."
+            spanClass="lg:col-span-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.75"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+              ></path>
+            </svg>
+          </FastCard>
+
+          <FastCard
+            title="Single-binary deployment."
+            description="No Apache, no PHP-FPM pools, and no complex configuration files. Run the backend as a single statically-linked binary."
+            spanClass="lg:col-span-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+              ></path>
+              <path d="m3.3 7 8.7 5 8.7-5"></path>
+              <path d="M12 22V12"></path>
+            </svg>
+          </FastCard>
+
+          <FastCard
+            title="Zero-copy streaming."
+            description="Stream multi-gigabyte uploads directly to your storage backend without buffering files in memory, keeping your server stable."
+            spanClass="lg:col-span-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m16 6-4-4-4 4"></path>
+              <path d="M12 2v8"></path>
+              <rect width="20" height="8" x="2" y="14" rx="2"></rect>
+              <path d="M6 18h.01"></path>
+              <path d="M10 18h.01"></path>
+            </svg>
+          </FastCard>
+
+          <FastCard
+            title="Modern security."
+            description="Features enterprise-ready user authentication, token-based API security, and seamless user directory integrations."
+            spanClass="lg:col-span-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.8 17 5 19 5a1 1 0 0 1 1 1z"
+              ></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </FastCard>
+
+          <FastCard
+            title="S3-compatible."
+            description="Store files on local disks or offload them to any S3-compatible cloud storage provider with a simple configuration."
+            spanClass="lg:col-span-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+              <path d="M3 12A9 3 0 0 0 21 12"></path>
+            </svg>
+          </FastCard>
+
+          <FastCard
+            title="Asynchronous job queues."
+            description="Offload intensive tasks like thumbnail generation and OCR text extraction to background Redis worker queues to keep API latency sub-millisecond."
+            spanClass="md:col-span-2 lg:col-span-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+              ></path>
+              <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
+              <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
+            </svg>
+          </FastCard>
+        </div>
+
+        <!-- Bottom: Side-by-Side Raspberry Pi 5 Benchmarks -->
+        <div
+          id="benchmarks"
+          class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800"
+        >
+          <BenchmarkCard
+            title="Sync Request Latency (TTFB)"
+            fynncloudValue="12 ms"
+            fynncloudPercent={5}
+            nextcloudValue="240 ms"
+            comparisonPercent="-95%"
+            description="Response latency for a delta sync request on a Raspberry Pi 5"
+          >
+            <span slot="fynncloud-sub" class="text-zinc-500 font-normal"
+              >(Swift + Vapor)</span
+            >
+          </BenchmarkCard>
+
+          <BenchmarkCard
+            title="Server Memory Footprint (Idle)"
+            fynncloudValue="42 MB"
+            fynncloudPercent={7}
+            nextcloudValue="626 MB"
+            nextcloudLabel="(Apache + FPM pool)"
+            comparisonPercent="-93%"
+            description="Memory consumption of idle backend services on a Raspberry Pi 5"
+          />
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Pricing Section -->
   <section
     id="pricing"
-    class="w-full bg-white text-neutral-900 py-24 border-b border-neutral-200/50 relative"
+    class="w-full bg-white text-zinc-950 py-24 sm:py-32 border-b border-zinc-200"
     data-header-theme="light"
   >
-    <div class="w-full max-w-5xl mx-auto px-6 relative z-10 flex flex-col">
+    <div class="w-full max-w-6xl mx-auto px-6">
       <!-- Section Header -->
-      <div class="max-w-2xl mb-16">
+      <div class="max-w-2xl mb-14">
         <h2
-          class="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900"
+          class="text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 leading-tight text-balance"
         >
           Fair. Scalable. Transparent.
         </h2>
-        <p class="mt-4 text-neutral-600 leading-relaxed max-w-xl">
-          We explicitly target the ignored 10-to-99-user segment with zero seat
-          minimums, alongside a highly permissive free tier for homelabs.
+        <p class="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed text-pretty">
+          We explicitly target the ignored 10-to-99-user segment with zero
+          seat minimums, alongside a highly permissive free tier for homelabs.
         </p>
       </div>
 
-      <!-- FynnCloud Cost Estimator -->
-      <div
-        class="w-full rounded-3xl bg-neutral-50 border border-neutral-200/60 p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)] mb-16"
-      >
-        <div
-          class="flex flex-col lg:flex-row gap-10 items-center justify-between"
-        >
-          <div class="flex-1 w-full space-y-6">
-            <div>
-              <h3 class="text-2xl font-bold mt-2 text-neutral-900">
-                How many users in your team?
-              </h3>
-              <p class="text-sm text-neutral-500 mt-1">
-                Select your team size to estimate your self-hosted licensing
-                costs and see which plan fits your requirements.
-              </p>
-            </div>
-
-            <!-- Slider -->
-            <div class="space-y-4">
-              <div class="flex justify-between items-baseline">
-                <span class="text-sm font-semibold text-neutral-700"
-                  >Team Size</span
-                >
-                <span
-                  class="text-3xl font-extrabold text-blue-600"
-                  id="user-count-display"
-                  >25 <span class="text-sm font-normal text-neutral-500"
-                    >users</span
-                  ></span
-                >
-              </div>
-              <input
-                type="range"
-                id="user-range"
-                min="1"
-                max="150"
-                value="25"
-                class="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/50"
-              />
-              <div
-                class="flex justify-between text-xs text-neutral-400 font-medium"
-              >
-                <span>1 User (Homelab)</span>
-                <span>50 Users</span>
-                <span>100 Users</span>
-                <span>150+ Users</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Vertical Divider on lg screens -->
-          <div class="hidden lg:block w-[1px] h-40 bg-neutral-200"></div>
-
-          <!-- Recommended Plan Display -->
+      <!-- Unified Architectural Pricing Matrix (Estimator + 3 Tiers) -->
+      <div class="rounded-2xl border border-zinc-200 overflow-hidden bg-zinc-200 space-y-px">
+        <!-- Top Row: Interactive Team Size Estimator -->
+        <div class="bg-zinc-50 p-7 sm:p-10">
           <div
-            class="w-full lg:w-[22rem] bg-white border border-neutral-200/80 rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden shadow-sm"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
           >
-            <div class="flex flex-col gap-4 relative z-10">
-              <!-- Pricing header -->
-              <div>
-                <span
-                  class="text-xs font-semibold text-blue-600"
-                  >Recommended Plan</span
-                >
-                <h4
-                  class="text-lg font-extrabold text-neutral-900 mt-0.5"
-                  id="fynncloud-calc-tier"
-                >
-                  Business Tier
-                </h4>
-                <div class="flex items-baseline mt-1.5">
-                  <span
-                    class="text-3xl font-extrabold text-blue-600"
-                    id="fynncloud-calc-cost">$600</span
-                  >
-                  <span class="text-sm font-semibold text-neutral-500 ml-1"
-                    >/ yr</span
-                  >
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-4">
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950">
+                    How many users in your team?
+                  </h3>
+                  <p class="text-sm text-zinc-500 mt-1">
+                    Slide to estimate annual self-hosted subscription costs.
+                  </p>
                 </div>
                 <div
-                  class="text-xs text-neutral-400 mt-1"
-                  id="fynncloud-calc-breakdown"
+                  class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tabular-nums tracking-tight"
+                  id="user-count-display"
                 >
-                  25 users × $2/mo × 12 mos
+                  25 <span class="text-sm font-medium text-zinc-500">users</span>
                 </div>
               </div>
 
-              <div class="border-t border-neutral-100 my-0.5"></div>
+              <div class="space-y-3 pt-1">
+                <input
+                  type="range"
+                  id="user-range"
+                  min="1"
+                  max="150"
+                  value="25"
+                  class="w-full h-2 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-blue-600 focus:outline-none"
+                  aria-label="Number of users in your team"
+                />
+                <div
+                  class="flex justify-between text-xs text-zinc-500 font-medium select-none"
+                >
+                  <button
+                    type="button"
+                    data-slider-preset="1"
+                    class="hover:text-zinc-950 transition-colors"
+                    >1 User (Homelab)</button
+                  >
+                  <button
+                    type="button"
+                    data-slider-preset="50"
+                    class="hover:text-zinc-950 transition-colors"
+                    >50 Users</button
+                  >
+                  <button
+                    type="button"
+                    data-slider-preset="100"
+                    class="hover:text-zinc-950 transition-colors"
+                    >100 Users</button
+                  >
+                  <button
+                    type="button"
+                    data-slider-preset="150"
+                    class="hover:text-zinc-950 transition-colors"
+                    >150+ Users</button
+                  >
+                </div>
+              </div>
+            </div>
 
-              <!-- Included Features -->
-              <div class="space-y-2">
-                <span
-                  class="text-xs font-semibold text-neutral-500"
-                  >Included Features</span
-                >
-                <ul
-                  class="space-y-2 text-xs text-neutral-600"
-                  id="fynncloud-calc-features"
-                >
-                  <!-- Will be populated dynamically via JavaScript -->
-                </ul>
+            <!-- Live Estimate Output -->
+            <div
+              class="lg:col-span-5 bg-white border border-zinc-200/90 rounded-xl p-6 sm:p-7 flex flex-col justify-between gap-5"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-xs font-medium text-zinc-500">
+                    Estimated Subscription
+                  </div>
+                  <h4
+                    class="text-xl font-bold tracking-tight text-zinc-950 mt-0.5"
+                    id="fynncloud-calc-tier"
+                  >
+                    Business Tier
+                  </h4>
+                  <div
+                    class="text-xs text-zinc-500 mt-1 tabular-nums"
+                    id="fynncloud-calc-breakdown"
+                  >
+                    25 users × $2/mo × 12 mos
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span
+                    class="text-3xl sm:text-4xl font-extrabold tracking-tight text-blue-600 tabular-nums"
+                    id="fynncloud-calc-cost">$600</span
+                  >
+                  <span class="text-xs font-semibold text-zinc-500 block"
+                    >per year</span
+                  >
+                </div>
               </div>
 
-              <!-- Dynamic CTA Button -->
-              <div class="mt-2">
-                <a
-                  href="#"
-                  id="fynncloud-calc-cta"
-                  class="block w-full text-center bg-gradient-to-b from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 active:scale-[0.98] text-white py-2.5 px-4 rounded-xl text-xs font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_2px_6px_rgba(37,99,235,0.25)] transition duration-150"
-                >
-                  Get Business License
-                </a>
-              </div>
+              <ul
+                class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-600 border-t border-zinc-100 pt-4"
+                id="fynncloud-calc-features"
+              >
+                <!-- Populated dynamically via JavaScript -->
+              </ul>
+
+              <a
+                href="#"
+                id="fynncloud-calc-cta"
+                class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:scale-99 text-white py-3 px-4 rounded-lg text-xs font-semibold transition duration-150"
+              >
+                Get Started Now
+              </a>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Pricing cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16">
-        <!-- Homelab (Community) -->
-        <PricingCard
-          title="Homelab"
-          subtitle="For developers, families, and self-hosters."
-          price="$0"
-          priceSuffix="Free forever"
-          features={[
-            { text: "Up to 10 active users", highlight: true },
-            { text: "Native Finder sync & desktop apps" },
-            { text: "AI semantic search & secure sharing" },
-            { text: "Community support" },
-          ]}
-          ctaText="Get Started Free"
-          ctaHref="https://github.com/FynnCloudProject"
-        />
+        <!-- Bottom Row: 3-Column Pricing Table -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-200">
+          <PricingCard
+            title="Homelab"
+            subtitle="For developers, families, and self-hosters."
+            price="$0"
+            priceSuffix="Free forever"
+            features={[
+              { text: "Up to 10 active users", highlight: true },
+              { text: "Native Finder sync & desktop apps" },
+              { text: "AI semantic search & secure sharing" },
+              { text: "Community support" },
+            ]}
+            ctaText="Get Started Free"
+            ctaHref="https://github.com/FynnCloudProject"
+          />
 
-        <!-- Business (Business) -->
-        <PricingCard
-          title="Business"
-          subtitle="For growing teams and professional organizations."
-          price="$2"
-          priceSuffix="/ user / mo"
-          extraLabel="Billed annually • Cancel anytime"
-          features={[
-            { text: "Up to 100 active users", highlight: true },
-            { text: "Everything in Homelab" },
-            { text: "SSO & directory integrations" },
-            { text: "Priority email support" },
-          ]}
-          ctaText="Get Started Now"
-          ctaTier="business"
-          highlighted={true}
-        />
+          <PricingCard
+            title="Business"
+            subtitle="For growing teams and professional organizations."
+            price="$2"
+            priceSuffix="/ user / mo"
+            extraLabel="Billed annually • Cancel anytime"
+            features={[
+              { text: "Up to 100 active users", highlight: true },
+              { text: "Everything in Homelab" },
+              { text: "SSO & directory integrations" },
+              { text: "Priority email support" },
+            ]}
+            ctaText="Get Started Now"
+            ctaTier="business"
+            highlighted={true}
+          />
 
-        <!-- Enterprise -->
-        <PricingCard
-          title="Enterprise"
-          subtitle="For large-scale infrastructure and high-availability setups."
-          price="$2,500"
-          priceSuffix="/ yr"
-          extraLabel="Flat-rate license • Unlimited users"
-          features={[
-            { text: "Unlimited active users", highlight: true },
-            { text: "Everything in Business" },
-            { text: "High-availability, multi-node & Kubernetes" },
-            { text: "Priority SLA support" },
-          ]}
-          ctaText="Get Started Now"
-          ctaTier="enterprise"
-        />
+          <PricingCard
+            title="Enterprise"
+            subtitle="For large-scale infrastructure and high-availability setups."
+            price="$2,500"
+            priceSuffix="/ yr"
+            extraLabel="Flat-rate subscription • Unlimited users"
+            features={[
+              { text: "Unlimited active users", highlight: true },
+              { text: "Everything in Business" },
+              { text: "High-availability, multi-node & Kubernetes" },
+              { text: "Priority SLA support" },
+            ]}
+            ctaText="Get Started Now"
+            ctaTier="enterprise"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -605,6 +586,7 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
           "fynncloud-calc-features",
         );
         const fynncloudCTA = document.getElementById("fynncloud-calc-cta");
+        const presetButtons = document.querySelectorAll("[data-slider-preset]");
 
         if (
           !slider ||
@@ -622,8 +604,8 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
           homelab: {
             features: [
               "Up to 10 active users",
-              "Native Finder sync & desktop apps",
-              "AI semantic search & secure sharing",
+              "Native Finder sync",
+              "AI semantic search",
               "Community support",
             ],
             ctaText: "Get Started Free",
@@ -633,7 +615,7 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
             features: [
               "Up to 100 active users",
               "Everything in Homelab",
-              "SSO & directory integrations",
+              "SSO & directory sync",
               "Priority email support",
             ],
             ctaText: "Get Started Now",
@@ -643,7 +625,7 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
             features: [
               "Unlimited active users",
               "Everything in Business",
-              "High-availability, multi-node & Kubernetes",
+              "HA & Kubernetes",
               "Priority SLA support",
             ],
             ctaText: "Get Started Now",
@@ -654,8 +636,7 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
         function updateCalculator() {
           const users = parseInt(slider.value, 10);
 
-          // Update user display
-          userDisplay.innerHTML = `${users} <span class="text-sm font-normal text-neutral-500">user${users > 1 ? "s" : ""}</span>`;
+          userDisplay.innerHTML = `${users} <span class="text-sm font-medium text-zinc-500">user${users > 1 ? "s" : ""}</span>`;
 
           let fynnAnnual = 0;
           let tierName = "";
@@ -691,13 +672,12 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
           fynncloudTier.textContent = tierName;
           fynncloudBreakdown.textContent = fynnBreakdownText;
 
-          // Update features list dynamically
           const tier = tierDetails[currentTierKey];
           fynncloudFeatures.innerHTML = tier.features
             .map(
               (feature) => `
               <li class="flex items-center gap-2">
-                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                 </svg>
                 <span>${feature}</span>
@@ -706,7 +686,6 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
             )
             .join("");
 
-          // Update CTA button details
           fynncloudCTA.textContent = tier.ctaText;
           if (currentTierKey === "business") {
             fynncloudCTA.href = "#";
@@ -728,7 +707,16 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
 
         slider.addEventListener("input", updateCalculator);
 
-        // Run initially to render matching UI
+        presetButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const val = btn.getAttribute("data-slider-preset");
+            if (val) {
+              slider.value = val;
+              updateCalculator();
+            }
+          });
+        });
+
         updateCalculator();
       };
 
@@ -740,13 +728,14 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
     })();
   </script>
 
-  <section
-    class="w-full bg-[#EAECEF] text-neutral-500 py-16 flex justify-center"
-    data-header-theme="light"
+  <!-- Footer -->
+  <footer
+    class="w-full bg-zinc-950 text-zinc-500 py-16 border-t border-zinc-800/80"
+    data-header-theme="dark"
   >
-    <div class="w-full max-w-5xl px-6 flex flex-col gap-10">
+    <div class="w-full max-w-6xl mx-auto px-6 flex flex-col gap-10">
       <div
-        class="text-[10px] text-neutral-500 space-y-2 border-b border-neutral-300 pb-8 leading-relaxed"
+        class="text-xs text-zinc-500 space-y-2.5 border-b border-zinc-800/80 pb-8 leading-relaxed"
       >
         <p>
           1. TTFB (Time to First Byte) request latency benchmarks conducted in
@@ -770,30 +759,63 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="flex items-center justify-center select-none gap-3">
-          <img
-            src="/img/logo.svg"
-            alt="FynnCloud Footer Logo"
-            class="h-10 w-auto"
-          />
-          <p class="text-lg font-light leading-none">
-            FynnCloud<br />
-            <span class="text-xs text-neutral-400 tracking-tight">© 2026</span>
-          </p>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div class="flex items-center select-none gap-3 text-white">
+          <svg
+            viewBox="40 68 184 112"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-auto shrink-0"
+            aria-hidden="true"
+          >
+            <path
+              d="M40 142 C40 121.013 57.013 104 78 104 C80.259 104 82.486 104.197 84.65 104.424 C105.53 109.629 121 128.508 121 151 C121 161.896 117.37 171.944 111.252 180 L78 180 C57.013 180 40 162.987 40 142 Z M125.539 180 C130.293 171.404 133 161.518 133 151 C133 123.156 114.034 99.742 88.316 92.972 C89.991 89.484 92.113 86.251 94.607 83.348 C123.254 92.489 144 119.322 144 151 C144 161.33 141.794 171.146 137.827 180 L125.539 180 Z M128 68 C150.536 68 169.115 84.942 171.694 106.785 C176.11 104.989 180.939 104 186 104 C206.987 104 224 121.013 224 142 C224 162.987 206.987 180 186 180 L152.925 180 C156.209 170.95 158 161.184 158 151 C158 116.245 137.141 86.361 107.258 73.186 C113.438 69.877 120.5 68 128 68 Z M182.719 164.344 L182.719 149.594 L198.625 149.594 C200.75 149.594 202.156 148.344 202.156 146.312 C202.156 144.281 200.75 143.031 198.625 143.031 L182.719 143.031 L182.719 129.719 L200.25 129.719 C202.438 129.719 203.938 128.406 203.938 126.312 C203.938 124.219 202.469 122.906 200.25 122.906 L178.688 122.906 C176.188 122.906 174.656 124.469 174.656 127.094 L174.656 164.344 C174.656 167 176.188 168.531 178.688 168.531 C181.219 168.531 182.719 167 182.719 164.344 Z"
+              fill="currentColor"
+              fill-rule="evenodd"></path>
+          </svg>
+          <svg
+            viewBox="0 0 727 114"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4.5 w-auto shrink-0 translate-y-0.5"
+            aria-label="FynnCloud"
+          >
+            <path
+              d="M0 91.875V1.6875H77.1875V13.0625H13.25V42.5625H73.5V53.625H13.25V91.875H0ZM96.9375 113.812C95.3958 113.812 93.8958 113.75 92.4375 113.625C90.9792 113.5 89.6875 113.312 88.5625 113.062V102.875C89.4792 103.042 90.5208 103.188 91.6875 103.312C92.8542 103.479 94.0625 103.562 95.3125 103.562C99.0625 103.562 102.208 102.958 104.75 101.75C107.292 100.542 109.5 98.3542 111.375 95.1875L113.25 91.75L80.3125 26.5625H94.0625L121.438 82.4375L118.375 80.0625H122.688L119.625 82.4375L145.75 26.5625H159.438L127 92.8125C124.375 97.9792 121.688 102.104 118.938 105.188C116.188 108.271 113.062 110.479 109.562 111.812C106.062 113.146 101.854 113.812 96.9375 113.812ZM167.75 91.875V26.5625H180.5V39.375H180.812C183.271 35 186.917 31.5417 191.75 29C196.625 26.4167 202.333 25.125 208.875 25.125C218.542 25.125 226.042 27.8125 231.375 33.1875C236.75 38.5208 239.438 46 239.438 55.625V91.875H226.625V57.6875C226.625 50.5625 224.833 45.1458 221.25 41.4375C217.667 37.7292 212.354 35.875 205.312 35.875C200.354 35.875 196 36.8542 192.25 38.8125C188.542 40.7292 185.646 43.4583 183.562 47C181.521 50.5 180.5 54.6042 180.5 59.3125V91.875H167.75ZM253 91.875V26.5625H265.75V39.375H266.062C268.521 35 272.167 31.5417 277 29C281.875 26.4167 287.583 25.125 294.125 25.125C303.792 25.125 311.292 27.8125 316.625 33.1875C322 38.5208 324.688 46 324.688 55.625V91.875H311.875V57.6875C311.875 50.5625 310.083 45.1458 306.5 41.4375C302.917 37.7292 297.604 35.875 290.562 35.875C285.604 35.875 281.25 36.8542 277.5 38.8125C273.792 40.7292 270.896 43.4583 268.812 47C266.771 50.5 265.75 54.6042 265.75 59.3125V91.875H253ZM389.875 93.5625C378.917 93.5625 369.438 91.6458 361.438 87.8125C353.438 83.9375 347.271 78.5 342.938 71.5C338.604 64.5 336.438 56.25 336.438 46.75V46.6875C336.438 37.1875 338.604 28.9583 342.938 22C347.271 15 353.438 9.58333 361.438 5.75C369.438 1.91667 378.917 0 389.875 0C398.875 0 406.875 1.375 413.875 4.125C420.917 6.83333 426.688 10.6667 431.188 15.625C435.688 20.5833 438.583 26.4583 439.875 33.25L440 33.9375H426.625L426.375 33.125C424.875 28.5417 422.5 24.6458 419.25 21.4375C416 18.2292 411.917 15.7917 407 14.125C402.083 12.4583 396.396 11.625 389.938 11.625C381.688 11.625 374.583 13.0833 368.625 16C362.667 18.875 358.062 22.9375 354.812 28.1875C351.604 33.4375 350 39.6042 350 46.6875V46.75C350 53.8333 351.625 60.0208 354.875 65.3125C358.125 70.5625 362.729 74.6458 368.688 77.5625C374.646 80.4792 381.729 81.9375 389.938 81.9375C396.312 81.9375 401.938 81.0833 406.812 79.375C411.729 77.625 415.833 75.1042 419.125 71.8125C422.458 68.5208 424.896 64.5 426.438 59.75L426.625 59.3125H440L439.875 59.9375C438.583 66.7708 435.688 72.7083 431.188 77.75C426.688 82.7917 420.917 86.6875 413.875 89.4375C406.833 92.1875 398.833 93.5625 389.875 93.5625ZM452 91.875V1.6875H464.812V91.875H452ZM515.562 93.3125C507.771 93.3125 500.917 91.9167 495 89.125C489.083 86.3333 484.458 82.3958 481.125 77.3125C477.792 72.2292 476.125 66.2083 476.125 59.25V59.125C476.125 52.1667 477.792 46.1667 481.125 41.125C484.458 36.0417 489.083 32.1042 495 29.3125C500.917 26.5208 507.771 25.125 515.562 25.125C523.354 25.125 530.208 26.5208 536.125 29.3125C542.083 32.1042 546.729 36.0417 550.062 41.125C553.396 46.1667 555.062 52.1667 555.062 59.125V59.25C555.062 66.2083 553.396 72.2292 550.062 77.3125C546.729 82.3958 542.104 86.3333 536.188 89.125C530.271 91.9167 523.396 93.3125 515.562 93.3125ZM515.625 82.6875C520.833 82.6875 525.417 81.7708 529.375 79.9375C533.333 78.1042 536.417 75.4583 538.625 72C540.875 68.5 542 64.25 542 59.25V59.125C542 54.1667 540.875 49.9583 538.625 46.5C536.417 43 533.312 40.3333 529.312 38.5C525.354 36.6667 520.771 35.75 515.562 35.75C510.396 35.75 505.812 36.6667 501.812 38.5C497.854 40.3333 494.75 43 492.5 46.5C490.292 49.9583 489.188 54.1667 489.188 59.125V59.25C489.188 64.25 490.292 68.5 492.5 72C494.75 75.4583 497.854 78.1042 501.812 79.9375C505.812 81.7708 510.417 82.6875 515.625 82.6875ZM595.625 93.3125C589.458 93.3125 584.125 92.125 579.625 89.75C575.125 87.375 571.646 83.9375 569.188 79.4375C566.771 74.9375 565.562 69.5208 565.562 63.1875V26.5625H578.312V61.125C578.312 67.9583 580.062 73.25 583.562 77C587.104 80.7083 592.292 82.5625 599.125 82.5625C602.708 82.5625 606 82.0208 609 80.9375C612 79.8542 614.604 78.3125 616.812 76.3125C619.021 74.2708 620.729 71.8125 621.938 68.9375C623.146 66.0208 623.75 62.7292 623.75 59.0625V26.5625H636.562V91.875H623.75V79.0625H623.438C621.854 81.9375 619.688 84.4375 616.938 86.5625C614.229 88.6875 611.062 90.3542 607.438 91.5625C603.854 92.7292 599.917 93.3125 595.625 93.3125ZM683.25 93.3125C675.75 93.3125 669.312 91.8542 663.938 88.9375C658.562 86.0208 654.438 82 651.562 76.875C648.688 71.7083 647.25 65.8333 647.25 59.25V59.1875C647.25 52.6042 648.688 46.75 651.562 41.625C654.479 36.5 658.604 32.4792 663.938 29.5625C669.312 26.6042 675.729 25.125 683.188 25.125C687.938 25.125 692.229 25.7083 696.062 26.875C699.896 28 703.25 29.6042 706.125 31.6875C709.042 33.7708 711.396 36.1875 713.188 38.9375H713.5V1.6875H726.25V91.875H713.5V79.5H713.188C711.396 82.25 709.062 84.6667 706.188 86.75C703.312 88.8333 699.958 90.4583 696.125 91.625C692.292 92.75 688 93.3125 683.25 93.3125ZM686.688 82.6875C692.104 82.6875 696.812 81.7292 700.812 79.8125C704.854 77.8542 707.958 75.1042 710.125 71.5625C712.333 68.0208 713.438 63.9167 713.438 59.25V59.1875C713.438 54.4792 712.333 50.375 710.125 46.875C707.917 43.375 704.812 40.6458 700.812 38.6875C696.812 36.7292 692.104 35.75 686.688 35.75C681.104 35.75 676.354 36.7083 672.438 38.625C668.521 40.5 665.521 43.1875 663.438 46.6875C661.354 50.1875 660.312 54.3542 660.312 59.1875V59.25C660.312 64.125 661.354 68.3125 663.438 71.8125C665.521 75.3125 668.521 78 672.438 79.875C676.354 81.75 681.104 82.6875 686.688 82.6875Z"
+              fill="currentColor"></path>
+          </svg>
+          <span class="text-xs text-zinc-500 font-medium pl-2 border-l border-zinc-800"
+            >© 2026</span
+          >
         </div>
+
         <div
-          class="flex items-center gap-4 text-xs font-semibold text-neutral-500"
+          class="flex items-center gap-6 text-xs font-medium text-zinc-400"
         >
           <a
-            class="hover:text-neutral-800 transition duration-150"
+            class="hover:text-white transition duration-150"
+            href="#features">Features</a
+          >
+          <a
+            class="hover:text-white transition duration-150"
+            href="#architecture">Architecture</a
+          >
+          <a
+            class="hover:text-white transition duration-150"
+            href="#benchmarks">Benchmarks</a
+          >
+          <a
+            class="hover:text-white transition duration-150"
+            href="#pricing">Pricing</a
+          >
+          <a
+            class="hover:text-white transition duration-150"
             href="https://github.com/FynnCloudProject"
             target="_blank"
             rel="noopener">GitHub</a
           >
-          <span class="text-neutral-300 font-normal select-none">•</span>
           <a
-            class="hover:text-neutral-800 transition duration-150"
+            class="hover:text-white transition duration-150"
             href="https://github.com/FynnCloudProject/fynncloud.ch"
             target="_blank"
             rel="noopener">Website Source</a
@@ -801,7 +823,7 @@ const portalUrl = import.meta.env.PUBLIC_PORTAL_URL || "http://localhost:3000";
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
   <!-- Checkout is handled by the shared subscribe page on the portal -->
   <script define:vars={{ portalUrl }} is:inline>

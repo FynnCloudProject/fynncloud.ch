@@ -9,15 +9,14 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-zinc-950">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/img/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <meta
@@ -43,52 +42,95 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
     <slot name="head" />
   </head>
   <body
-    class="min-h-screen bg-black font-inter antialiased text-zinc-100 flex flex-col"
+    class="min-h-screen bg-zinc-950 font-sans antialiased text-zinc-100 flex flex-col selection:bg-blue-600 selection:text-white"
   >
-    <header class="sticky top-0 z-50 w-full px-4 py-4 flex justify-center">
+    <header
+      id="main-header"
+      data-theme="dark"
+      class="group sticky top-0 z-50 w-full backdrop-blur-xl border-b transition-colors duration-250 data-[theme=dark]:bg-zinc-950/80 data-[theme=dark]:border-white/10 data-[theme=light]:bg-white/90 data-[theme=light]:border-zinc-950/10"
+    >
       <div
-        id="main-header-container"
-        class="theme-dark w-full max-w-5xl flex items-center justify-between rounded-full backdrop-blur-xl pl-6 pr-3.5 py-2.5 border transition duration-300"
+        class="w-full max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
       >
-        <a href="/" class="flex items-center gap-2">
-          <img src="/img/logo.svg" alt="FynnCloud Logo" class="h-8 w-auto" />
-          <span
-            id="header-brand-text"
-            class="text-lg font-medium tracking-tight transition duration-300"
-            >FynnCloud</span
+        <a
+          href="/"
+          id="header-brand"
+          class="flex items-center gap-3 transition-colors duration-200 focus:outline-none group-data-[theme=dark]:text-white group-data-[theme=light]:text-zinc-950"
+          aria-label="FynnCloud Home"
+        >
+          <svg
+            viewBox="40 68 184 112"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5.5 w-auto shrink-0"
+            aria-hidden="true"
           >
+            <path
+              d="M40 142 C40 121.013 57.013 104 78 104 C80.259 104 82.486 104.197 84.65 104.424 C105.53 109.629 121 128.508 121 151 C121 161.896 117.37 171.944 111.252 180 L78 180 C57.013 180 40 162.987 40 142 Z M125.539 180 C130.293 171.404 133 161.518 133 151 C133 123.156 114.034 99.742 88.316 92.972 C89.991 89.484 92.113 86.251 94.607 83.348 C123.254 92.489 144 119.322 144 151 C144 161.33 141.794 171.146 137.827 180 L125.539 180 Z M128 68 C150.536 68 169.115 84.942 171.694 106.785 C176.11 104.989 180.939 104 186 104 C206.987 104 224 121.013 224 142 C224 162.987 206.987 180 186 180 L152.925 180 C156.209 170.95 158 161.184 158 151 C158 116.245 137.141 86.361 107.258 73.186 C113.438 69.877 120.5 68 128 68 Z M182.719 164.344 L182.719 149.594 L198.625 149.594 C200.75 149.594 202.156 148.344 202.156 146.312 C202.156 144.281 200.75 143.031 198.625 143.031 L182.719 143.031 L182.719 129.719 L200.25 129.719 C202.438 129.719 203.938 128.406 203.938 126.312 C203.938 124.219 202.469 122.906 200.25 122.906 L178.688 122.906 C176.188 122.906 174.656 124.469 174.656 127.094 L174.656 164.344 C174.656 167 176.188 168.531 178.688 168.531 C181.219 168.531 182.719 167 182.719 164.344 Z"
+              fill="currentColor"
+              fill-rule="evenodd"></path>
+          </svg>
+          <svg
+            viewBox="0 0 727 114"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4.5 w-auto shrink-0 translate-y-0.5"
+            aria-label="FynnCloud"
+          >
+            <path
+              d="M0 91.875V1.6875H77.1875V13.0625H13.25V42.5625H73.5V53.625H13.25V91.875H0ZM96.9375 113.812C95.3958 113.812 93.8958 113.75 92.4375 113.625C90.9792 113.5 89.6875 113.312 88.5625 113.062V102.875C89.4792 103.042 90.5208 103.188 91.6875 103.312C92.8542 103.479 94.0625 103.562 95.3125 103.562C99.0625 103.562 102.208 102.958 104.75 101.75C107.292 100.542 109.5 98.3542 111.375 95.1875L113.25 91.75L80.3125 26.5625H94.0625L121.438 82.4375L118.375 80.0625H122.688L119.625 82.4375L145.75 26.5625H159.438L127 92.8125C124.375 97.9792 121.688 102.104 118.938 105.188C116.188 108.271 113.062 110.479 109.562 111.812C106.062 113.146 101.854 113.812 96.9375 113.812ZM167.75 91.875V26.5625H180.5V39.375H180.812C183.271 35 186.917 31.5417 191.75 29C196.625 26.4167 202.333 25.125 208.875 25.125C218.542 25.125 226.042 27.8125 231.375 33.1875C236.75 38.5208 239.438 46 239.438 55.625V91.875H226.625V57.6875C226.625 50.5625 224.833 45.1458 221.25 41.4375C217.667 37.7292 212.354 35.875 205.312 35.875C200.354 35.875 196 36.8542 192.25 38.8125C188.542 40.7292 185.646 43.4583 183.562 47C181.521 50.5 180.5 54.6042 180.5 59.3125V91.875H167.75ZM253 91.875V26.5625H265.75V39.375H266.062C268.521 35 272.167 31.5417 277 29C281.875 26.4167 287.583 25.125 294.125 25.125C303.792 25.125 311.292 27.8125 316.625 33.1875C322 38.5208 324.688 46 324.688 55.625V91.875H311.875V57.6875C311.875 50.5625 310.083 45.1458 306.5 41.4375C302.917 37.7292 297.604 35.875 290.562 35.875C285.604 35.875 281.25 36.8542 277.5 38.8125C273.792 40.7292 270.896 43.4583 268.812 47C266.771 50.5 265.75 54.6042 265.75 59.3125V91.875H253ZM389.875 93.5625C378.917 93.5625 369.438 91.6458 361.438 87.8125C353.438 83.9375 347.271 78.5 342.938 71.5C338.604 64.5 336.438 56.25 336.438 46.75V46.6875C336.438 37.1875 338.604 28.9583 342.938 22C347.271 15 353.438 9.58333 361.438 5.75C369.438 1.91667 378.917 0 389.875 0C398.875 0 406.875 1.375 413.875 4.125C420.917 6.83333 426.688 10.6667 431.188 15.625C435.688 20.5833 438.583 26.4583 439.875 33.25L440 33.9375H426.625L426.375 33.125C424.875 28.5417 422.5 24.6458 419.25 21.4375C416 18.2292 411.917 15.7917 407 14.125C402.083 12.4583 396.396 11.625 389.938 11.625C381.688 11.625 374.583 13.0833 368.625 16C362.667 18.875 358.062 22.9375 354.812 28.1875C351.604 33.4375 350 39.6042 350 46.6875V46.75C350 53.8333 351.625 60.0208 354.875 65.3125C358.125 70.5625 362.729 74.6458 368.688 77.5625C374.646 80.4792 381.729 81.9375 389.938 81.9375C396.312 81.9375 401.938 81.0833 406.812 79.375C411.729 77.625 415.833 75.1042 419.125 71.8125C422.458 68.5208 424.896 64.5 426.438 59.75L426.625 59.3125H440L439.875 59.9375C438.583 66.7708 435.688 72.7083 431.188 77.75C426.688 82.7917 420.917 86.6875 413.875 89.4375C406.833 92.1875 398.833 93.5625 389.875 93.5625ZM452 91.875V1.6875H464.812V91.875H452ZM515.562 93.3125C507.771 93.3125 500.917 91.9167 495 89.125C489.083 86.3333 484.458 82.3958 481.125 77.3125C477.792 72.2292 476.125 66.2083 476.125 59.25V59.125C476.125 52.1667 477.792 46.1667 481.125 41.125C484.458 36.0417 489.083 32.1042 495 29.3125C500.917 26.5208 507.771 25.125 515.562 25.125C523.354 25.125 530.208 26.5208 536.125 29.3125C542.083 32.1042 546.729 36.0417 550.062 41.125C553.396 46.1667 555.062 52.1667 555.062 59.125V59.25C555.062 66.2083 553.396 72.2292 550.062 77.3125C546.729 82.3958 542.104 86.3333 536.188 89.125C530.271 91.9167 523.396 93.3125 515.562 93.3125ZM515.625 82.6875C520.833 82.6875 525.417 81.7708 529.375 79.9375C533.333 78.1042 536.417 75.4583 538.625 72C540.875 68.5 542 64.25 542 59.25V59.125C542 54.1667 540.875 49.9583 538.625 46.5C536.417 43 533.312 40.3333 529.312 38.5C525.354 36.6667 520.771 35.75 515.562 35.75C510.396 35.75 505.812 36.6667 501.812 38.5C497.854 40.3333 494.75 43 492.5 46.5C490.292 49.9583 489.188 54.1667 489.188 59.125V59.25C489.188 64.25 490.292 68.5 492.5 72C494.75 75.4583 497.854 78.1042 501.812 79.9375C505.812 81.7708 510.417 82.6875 515.625 82.6875ZM595.625 93.3125C589.458 93.3125 584.125 92.125 579.625 89.75C575.125 87.375 571.646 83.9375 569.188 79.4375C566.771 74.9375 565.562 69.5208 565.562 63.1875V26.5625H578.312V61.125C578.312 67.9583 580.062 73.25 583.562 77C587.104 80.7083 592.292 82.5625 599.125 82.5625C602.708 82.5625 606 82.0208 609 80.9375C612 79.8542 614.604 78.3125 616.812 76.3125C619.021 74.2708 620.729 71.8125 621.938 68.9375C623.146 66.0208 623.75 62.7292 623.75 59.0625V26.5625H636.562V91.875H623.75V79.0625H623.438C621.854 81.9375 619.688 84.4375 616.938 86.5625C614.229 88.6875 611.062 90.3542 607.438 91.5625C603.854 92.7292 599.917 93.3125 595.625 93.3125ZM683.25 93.3125C675.75 93.3125 669.312 91.8542 663.938 88.9375C658.562 86.0208 654.438 82 651.562 76.875C648.688 71.7083 647.25 65.8333 647.25 59.25V59.1875C647.25 52.6042 648.688 46.75 651.562 41.625C654.479 36.5 658.604 32.4792 663.938 29.5625C669.312 26.6042 675.729 25.125 683.188 25.125C687.938 25.125 692.229 25.7083 696.062 26.875C699.896 28 703.25 29.6042 706.125 31.6875C709.042 33.7708 711.396 36.1875 713.188 38.9375H713.5V1.6875H726.25V91.875H713.5V79.5H713.188C711.396 82.25 709.062 84.6667 706.188 86.75C703.312 88.8333 699.958 90.4583 696.125 91.625C692.292 92.75 688 93.3125 683.25 93.3125ZM686.688 82.6875C692.104 82.6875 696.812 81.7292 700.812 79.8125C704.854 77.8542 707.958 75.1042 710.125 71.5625C712.333 68.0208 713.438 63.9167 713.438 59.25V59.1875C713.438 54.4792 712.333 50.375 710.125 46.875C707.917 43.375 704.812 40.6458 700.812 38.6875C696.812 36.7292 692.104 35.75 686.688 35.75C681.104 35.75 676.354 36.7083 672.438 38.625C668.521 40.5 665.521 43.1875 663.438 46.6875C661.354 50.1875 660.312 54.3542 660.312 59.1875V59.25C660.312 64.125 661.354 68.3125 663.438 71.8125C665.521 75.3125 668.521 78 672.438 79.875C676.354 81.75 681.104 82.6875 686.688 82.6875Z"
+              fill="currentColor"></path>
+          </svg>
         </a>
-        <nav class="flex items-center gap-5 text-sm font-medium">
+
+        <nav class="flex items-center gap-6 sm:gap-8 text-sm font-medium">
           <a
-            class="header-nav-link hidden sm:inline-block transition duration-300"
+            class="hidden sm:inline-block transition-colors duration-150 group-data-[theme=dark]:text-zinc-400 group-data-[theme=dark]:hover:text-white group-data-[theme=light]:text-zinc-600 group-data-[theme=light]:hover:text-zinc-950"
             href="#features">Features</a
           >
           <a
-            class="header-nav-link hidden sm:inline-block transition duration-300"
+            class="hidden md:inline-block transition-colors duration-150 group-data-[theme=dark]:text-zinc-400 group-data-[theme=dark]:hover:text-white group-data-[theme=light]:text-zinc-600 group-data-[theme=light]:hover:text-zinc-950"
+            href="#architecture">Architecture</a
+          >
+          <a
+            class="hidden sm:inline-block transition-colors duration-150 group-data-[theme=dark]:text-zinc-400 group-data-[theme=dark]:hover:text-white group-data-[theme=light]:text-zinc-600 group-data-[theme=light]:hover:text-zinc-950"
             href="#benchmarks">Benchmarks</a
           >
           <a
-            class="header-nav-link hidden sm:inline-block transition duration-300"
+            class="transition-colors duration-150 group-data-[theme=dark]:text-zinc-400 group-data-[theme=dark]:hover:text-white group-data-[theme=light]:text-zinc-600 group-data-[theme=light]:hover:text-zinc-950"
             href="#pricing">Pricing</a
           >
           <a
-            class="rounded-full bg-gradient-to-b from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-1.5 text-xs font-semibold text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_2px_6px_rgba(37,99,235,0.25)] transition duration-150 active:scale-95"
+            class="inline-flex items-center gap-2 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition duration-150 active:scale-98 group-data-[theme=dark]:bg-white group-data-[theme=dark]:text-zinc-950 group-data-[theme=dark]:hover:bg-zinc-200 group-data-[theme=light]:bg-zinc-950 group-data-[theme=light]:text-white group-data-[theme=light]:hover:bg-zinc-800"
             href="https://github.com/FynnCloudProject"
             target="_blank"
-            rel="noopener">GitHub</a
+            rel="noopener"
           >
+            <svg
+              class="w-3.5 h-3.5 fill-current"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              ></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
         </nav>
       </div>
     </header>
 
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
-        const headerEl = document.getElementById("main-header-container");
+        const headerEl = document.getElementById("main-header");
         const sections = document.querySelectorAll("[data-header-theme]");
 
         const observerOptions = {
           root: null,
-          rootMargin: "-60px 0px -90% 0px",
+          rootMargin: "-64px 0px -90% 0px",
           threshold: 0,
         };
 
@@ -96,13 +138,10 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const theme = entry.target.getAttribute("data-header-theme");
-              if (theme === "light") {
-                headerEl.classList.remove("theme-dark");
-                headerEl.classList.add("theme-light");
-              } else {
-                headerEl.classList.remove("theme-light");
-                headerEl.classList.add("theme-dark");
-              }
+              headerEl.setAttribute(
+                "data-theme",
+                theme === "light" ? "light" : "dark",
+              );
             }
           });
         }, observerOptions);
@@ -113,10 +152,9 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
 
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
-        const HEADER_OFFSET = 96; // matches scroll-padding-top: 6rem
-        const DURATION = 700;
+        const HEADER_OFFSET = 64;
+        const DURATION = 650;
 
-        // easeInOutCubic
         const ease = (t) =>
           t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 

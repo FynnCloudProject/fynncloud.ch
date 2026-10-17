@@ -8,39 +8,82 @@ interface Props {
   comparisonPercent: string;
   description: string;
 }
-const { title, fynncloudValue, fynncloudPercent, nextcloudValue, nextcloudLabel = "(PHP + Apache)", comparisonPercent, description } = Astro.props;
+const {
+  title,
+  fynncloudValue,
+  fynncloudPercent,
+  nextcloudValue,
+  nextcloudLabel = "(PHP + Apache)",
+  comparisonPercent,
+  description,
+} = Astro.props;
 ---
 
-<div class="rounded-2xl bg-zinc-900/50 border border-white/5 p-6 shadow-xl flex flex-col justify-between gap-6">
-  <div class="space-y-4">
-    <h3 class="text-base font-bold text-white tracking-wide">{title}</h3>
-    
-    <div class="space-y-4">
-      <!-- FynnCloud bar -->
-      <div class="space-y-1">
-        <div class="flex justify-between text-xs">
-          <span class="text-zinc-300 font-semibold">FynnCloud <slot name="fynncloud-sub" /></span>
-          <span class="text-blue-400 font-bold">{fynncloudValue}</span>
-        </div>
-        <div class="w-full bg-zinc-950 rounded-full h-3 overflow-hidden p-0.5 border border-white/5">
-          <div class="bg-blue-500 h-full rounded-full shadow-sm" style={`width: ${fynncloudPercent}%`}></div>
-        </div>
+<div
+  class="bg-zinc-900/25 p-7 sm:p-9 flex flex-col justify-between gap-8"
+>
+  <div class="flex items-start justify-between gap-6 border-b border-zinc-800/80 pb-5">
+    <div>
+      <h3 class="text-lg sm:text-xl font-semibold text-white tracking-tight">
+        {title}
+      </h3>
+      <p class="text-sm text-zinc-400 mt-1">{description}</p>
+    </div>
+    <div class="text-right shrink-0">
+      <div class="text-2xl sm:text-3xl font-bold text-blue-500 tabular-nums tracking-tight">
+        {comparisonPercent}
       </div>
-      <!-- Nextcloud bar -->
-      <div class="space-y-1">
-        <div class="flex justify-between text-xs">
-          <span class="text-neutral-300">Nextcloud Enterprise <span class="text-zinc-600 font-normal">{nextcloudLabel}</span></span>
-          <span class="text-zinc-300">{nextcloudValue}</span>
-        </div>
-        <div class="w-full bg-zinc-950 rounded-full h-3 overflow-hidden p-0.5 border border-white/5">
-          <div class="bg-zinc-800 h-full rounded-full w-[100%]"></div>
+      <div class="text-xs text-zinc-500 mt-0.5">vs. Nextcloud</div>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <!-- FynnCloud bar -->
+    <div class="space-y-2.5">
+      <div class="flex justify-between items-baseline">
+        <span class="inline-flex items-center gap-2.5 text-sm text-white font-semibold">
+          <svg
+            viewBox="40 68 184 112"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3.5 w-auto text-blue-500 shrink-0"
+            aria-hidden="true"
+          >
+            <path
+              d="M40 142 C40 121.013 57.013 104 78 104 C80.259 104 82.486 104.197 84.65 104.424 C105.53 109.629 121 128.508 121 151 C121 161.896 117.37 171.944 111.252 180 L78 180 C57.013 180 40 162.987 40 142 Z M125.539 180 C130.293 171.404 133 161.518 133 151 C133 123.156 114.034 99.742 88.316 92.972 C89.991 89.484 92.113 86.251 94.607 83.348 C123.254 92.489 144 119.322 144 151 C144 161.33 141.794 171.146 137.827 180 L125.539 180 Z M128 68 C150.536 68 169.115 84.942 171.694 106.785 C176.11 104.989 180.939 104 186 104 C206.987 104 224 121.013 224 142 C224 162.987 206.987 180 186 180 L152.925 180 C156.209 170.95 158 161.184 158 151 C158 116.245 137.141 86.361 107.258 73.186 C113.438 69.877 120.5 68 128 68 Z M182.719 164.344 L182.719 149.594 L198.625 149.594 C200.75 149.594 202.156 148.344 202.156 146.312 C202.156 144.281 200.75 143.031 198.625 143.031 L182.719 143.031 L182.719 129.719 L200.25 129.719 C202.438 129.719 203.938 128.406 203.938 126.312 C203.938 124.219 202.469 122.906 200.25 122.906 L178.688 122.906 C176.188 122.906 174.656 124.469 174.656 127.094 L174.656 164.344 C174.656 167 176.188 168.531 178.688 168.531 C181.219 168.531 182.719 167 182.719 164.344 Z"
+              fill="currentColor"
+              fill-rule="evenodd"></path>
+          </svg>
+          <span>FynnCloud <slot name="fynncloud-sub" /></span>
+        </span>
+        <span class="text-2xl text-white font-bold tabular-nums tracking-tight">
+          {fynncloudValue}
+        </span>
+      </div>
+      <div class="w-full bg-zinc-900 h-3 overflow-hidden rounded-xs">
+        <div
+          class="bg-blue-500 h-full"
+          style={`width: ${fynncloudPercent}%`}
+        >
         </div>
       </div>
     </div>
-  </div>
-  
-  <div class="flex justify-between items-center border-t border-white/5 pt-4 mt-2">
-    <span class="text-[10px] text-zinc-500 font-medium">{description}</span>
-    <span class="text-xs font-bold text-blue-400">{comparisonPercent}</span>
+
+    <!-- Nextcloud bar -->
+    <div class="space-y-2.5">
+      <div class="flex justify-between items-baseline">
+        <span class="text-sm text-zinc-400">
+          Nextcloud Enterprise <span class="text-zinc-600 font-normal"
+            >{nextcloudLabel}</span
+          >
+        </span>
+        <span class="text-lg text-zinc-500 font-medium tabular-nums">
+          {nextcloudValue}
+        </span>
+      </div>
+      <div class="w-full bg-zinc-900 h-3 overflow-hidden rounded-xs">
+        <div class="bg-zinc-700 h-full w-full"></div>
+      </div>
+    </div>
   </div>
 </div>
