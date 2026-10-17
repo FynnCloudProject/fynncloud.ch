@@ -3,9 +3,16 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
+const {
+  title = "FynnCloud - Self-Hosted Cloud Storage",
+  description = "A fast, compiled alternative to Nextcloud. Written in Swift and Vapor so it runs just as smoothly on a Raspberry Pi as it does on a rack server.",
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL("/img/ogimage.png", Astro.site);
 ---
 
 <!doctype html>
@@ -19,10 +26,30 @@ const { title = "FynnCloud - Self-Hosted Cloud Storage" } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FynnCloud" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="3600" />
+    <meta property="og:image:height" content="1890" />
     <meta
-      name="description"
-      content="FynnCloud - a self-hosted cloud storage solution built with Swift and Vapor."
+      property="og:image:alt"
+      content="FynnCloud - Next-gen self-hosted cloud storage engineered for speed."
     />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link
       rel="icon"
       type="image/png"
